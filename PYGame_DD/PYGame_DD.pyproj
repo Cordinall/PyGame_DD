@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4e77fdce-1f87-4e32-9ca5-e71601c58bc9</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>PYGame_DD.py</StartupFile>
+    <StartupFile>TextApp.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -24,6 +24,7 @@
     <Compile Include="Dangeon_Room.py" />
     <Compile Include="PYGame_DD.py" />
     <Compile Include="Dangeon_Items.py" />
+    <Compile Include="TextApp.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

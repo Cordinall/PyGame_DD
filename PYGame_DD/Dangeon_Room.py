@@ -122,6 +122,10 @@ class Dangeon_Room_Action_Enemy:
         print(self.__Readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_name_{self.__enemy_name}.txt"))
         print(self.__Readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_story_{self.__enemy_name}.txt"))
 
+    def VisualDeath(self):
+
+        print(self.__Readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_death_{self.__enemy_name}.txt"))
+
     def DamageDeal(self):
 
         return self.__enemy_dmg
@@ -133,3 +137,61 @@ class Dangeon_Room_Action_Enemy:
     def HpReduction(self, Damage):
 
         self.__enemy_hp -= Damage
+
+    def HpVis(self):
+
+        return self.__enemy_hp
+
+
+class Dangeon_Room_Action_Player:
+
+    def __init__(self, Player_name, Player_story, Player_inventory, Player_body, Player_hp):
+        
+        self.__player_name = Player_name
+        self.__player_story = Player_story
+        self.__player_inventory = Player_inventory
+        self.__player_body = Player_body
+        self.__player_hp = Player_hp
+
+        # 0 место в боди - мили оружие, 1 - ботинки, 2 - ноги, 3 - тело, 4 - руки, 5 - голова
+
+    def __Readtxt(self, adr):
+      ans = ""
+      for i in open(adr, encoding="utf-8"):
+        endans = i.strip()
+        if endans == "":
+            ans = ans + endans + "\n" + "\n"
+            continue
+        else:
+            ans = ans + endans + "\n"
+
+      return ans
+
+    def VisualPresentation(self):
+
+        print(self.__player_name)
+        print(self.__player_story)
+
+    def HpVis(self):
+
+        return self.__player_hp
+
+    def HpReduction(self, Damage):
+
+        self.__player_hp -= Damage
+
+    def BodyAddMelee(self, Melee_name):
+
+        for i in self.__player_inventory:
+
+            print(f"check {self.__player_inventory}")
+            print(f"check {self.__player_body}")
+
+            if i[3] == Melee_name:
+
+                self.__player_inventory.append(self.__player_body[0])
+                self.__player_body[0] = i
+                self.__player_inventory.remove(i)
+
+                print(self.__player_body)
+                print(self.__player_inventory)
