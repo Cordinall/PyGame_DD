@@ -143,7 +143,7 @@ class Dangeon_Room_Action_Enemy:
         return self.__enemy_hp
 
 
-class Dangeon_Room_Action_Player:
+class Dangeon_Action_Player_Conqueror:
 
     def __init__(self, Player_name, Player_story, Player_inventory, Player_body, Player_hp):
         
@@ -153,7 +153,7 @@ class Dangeon_Room_Action_Player:
         self.__player_body = Player_body
         self.__player_hp = Player_hp
 
-        # 0 место в боди - мили оружие, 1 - ботинки, 2 - ноги, 3 - тело, 4 - руки, 5 - голова
+        # 0 ianoi a aiae - ieee i?o?ea, 1 - aioeiee, 2 - iiae, 3 - oaei, 4 - ?oee, 5 - aieiaa
 
     def __Readtxt(self, adr):
       ans = ""
@@ -172,6 +172,86 @@ class Dangeon_Room_Action_Player:
         print(self.__player_name)
         print(self.__player_story)
 
+    def BodyChangeMelee(self, Melee_id):
+
+        for i in self.__player_inventory:
+
+            if i[0] == Melee_id:
+
+                self.__player_inventory.append(self.__player_body[0])
+                self.__player_body[0] = i
+                self.__player_inventory.remove(i)
+                
+    def BodyChangeBoots(self, Boots_id):
+
+        for i in self.__player_inventory:
+
+            if i[0] == Boots_id:
+
+                self.__player_inventory.append(self.__player_body[1])
+                self.__player_body[1] = i
+                self.__player_inventory.remove(i)
+                
+    def BodyChangeLeggs(self, Leggs_id):
+
+        for i in self.__player_inventory:
+
+            if i[0] == Leggs_id:
+
+                self.__player_inventory.append(self.__player_body[2])
+                self.__player_body[2] = i
+                self.__player_inventory.remove(i)
+                
+    def BodyChangeChest(self, Chest_id):
+
+        for i in self.__player_inventory:
+
+            if i[0] == Chest_id:
+
+                self.__player_inventory.append(self.__player_body[3])
+                self.__player_body[3] = i
+                self.__player_inventory.remove(i)
+                
+    def BodyChangeHands(self, Hands_id):
+
+        for i in self.__player_inventory:
+
+            if i[0] == Hands_id:
+
+                self.__player_inventory.append(self.__player_body[4])
+                self.__player_body[4] = i
+                self.__player_inventory.remove(i)
+                
+    def BodyChangeHead(self, Head_id):
+
+        for i in self.__player_inventory:
+
+            if i[0] == Head_id:
+
+                self.__player_inventory.append(self.__player_body[5])
+                self.__player_body[5] = i
+                self.__player_inventory.remove(i)
+                
+    def InventoryAdd(self, Item):
+        
+        self.__player_inventory.append(Item)
+        
+    def InventoryDel(self, Item_id):
+        
+        for i in self.__player_inventory:
+            
+            if i[0] == Item_id:
+                
+                self.__player_inventory.remove(i)
+        
+    def NameChange(self, Player_name):
+        
+        self.__player_name = Player_name
+        
+    def StoryChange(self, Player_story):
+        
+        self.__player_story = Player_story
+        
     def HpVis(self):
 
         return self.__player_hp
@@ -179,19 +259,3 @@ class Dangeon_Room_Action_Player:
     def HpReduction(self, Damage):
 
         self.__player_hp -= Damage
-
-    def BodyAddMelee(self, Melee_name):
-
-        for i in self.__player_inventory:
-
-            print(f"check {self.__player_inventory}")
-            print(f"check {self.__player_body}")
-
-            if i[3] == Melee_name:
-
-                self.__player_inventory.append(self.__player_body[0])
-                self.__player_body[0] = i
-                self.__player_inventory.remove(i)
-
-                print(self.__player_body)
-                print(self.__player_inventory)
