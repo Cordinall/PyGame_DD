@@ -1,55 +1,46 @@
 # -*- coding: cp1251 -*-
 from Dangeon_Room import *
-import random
+import os
 
-Room_objects = []
-Inventory_bag = []
-Inventory_body = [(1,  "onehand", "hand", "Потрёпаный меч", "Весьма старый и сильно притупившийся меч из железа", 1)]
+Player_answer = ""
 
-Current_difficuty = 0
+print("=====================================================")
+print("Приветствую в игре Dangeon and Dangeon")
+print("=====================================================\n")
 
-Enemy_max_dmg = Current_difficuty + 2
-Enemy_min_dmg = Current_difficuty + 1
-Enemy_max_hp = Current_difficuty + 5
-Enemy_min_hp = Current_difficuty + 1
-Chest_treasure_max_dmg = Current_difficuty + 3
-Chest_treasure_min_dmg = Current_difficuty + 1
+print("=====================================================")
+print("Внимание! Выбор осуществляется путём ввода целочисленных значений.\nВвод буквенных или дробных значений может вызвать ошибку.\nПример:\n")
+print("1. Атака\n2. Защита\n")
+print("1")
+print("=====================================================\n")
 
-ExitDangeon = 0
-while ExitDangeon == 0:
+ExitMainMenu = 0
+while ExitMainMenu == 0:
 
-    Visual_Room_size = random.randint(1,3)
-    Visual_Room_biome = random.randint(1,3)
-    Visual_Room = Dangeon_Room_NonAction(Visual_Room_size, Visual_Room_biome)
+    print("=====================================================")
+    print("Main Menu\n")
+    print("     1. Начать новую игру")
+    print("     2. Продолжить игру ( в разработке )")
+    print("     3. Справочник")
+    print("     4. Авторы")
+    print("     5. Выход")
+    print("=====================================================\n")
 
-    Visual_Room.VisualGeneration()
+    Player_answer = input()
 
-    doPlayer = int(input("========================================================\nВыберете действие: 1. Осмотреться 2. Вывести список объектов 3. Взаимодествовать с *объект* 4. Осмотреть персонажа\n"))
+    if Player_answer == "1":
 
-    if doPlayer == 1:
+        print("=====================================================")
+        print("     1. Покоритель ( в разработке )")
+        print("     2. Покорённый ( в разработке )")
+        print("     3. Хранитель ( в разработке )")
+        print("     4. Наблюдатель ( в разработке )")
+        print("")
+        print("     5. Назад")
+        print("=====================================================\n")
 
-        Entity_Enemy_name = random.randint(1,1)
-        Entity_Enemy_dmg = random.randint(Enemy_min_dmg,Enemy_max_dmg)
-        Entity_Enemy_hp = random.randint(Enemy_min_hp,Enemy_max_hp)
+        Player_answer = input()
 
-        Entity_Enemy = Dangeon_Room_Action_Enemy(Entity_Enemy_name, Entity_Enemy_dmg, Entity_Enemy_hp)
-
-        Entity_Enemy.VisualGeneraton()
-
-        ExitBattle = 0
-        while ExitBattle == 0:
-
-            if Entity_Enemy.HpVis() <= 0:
-
-                Entity_Enemy.VisualDeath()
-                ExitBattle = 1
-                continue
-
-            doPlayer = int(input("========================================================\nВыберете действие: 1. Атака 2. Смена обмундирования 3. Уклонение 4. Применить предмет\n"))
-
-            if doPlayer == 1:
-
-                Entity_Enemy.HpReduction(Inventory_body[0][5])
-                print(f"Вы нанесли противнику {Inventory_body[0][5]} урона.")
-
-    
+        if Player_answer == "1":
+            print("Выбран режим Покорителя.")
+            os.system('"D:\Games\Quake III\quake3.exe"')

@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4e77fdce-1f87-4e32-9ca5-e71601c58bc9</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>TextApp.py</StartupFile>
+    <StartupFile>PYGame_DD.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,8 +22,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Dangeon_Room.py" />
+    <Compile Include="ModeChose.py" />
     <Compile Include="PYGame_DD.py" />
     <Compile Include="Dangeon_Items.py" />
+    <Compile Include="StoryMode.py" />
     <Compile Include="TextApp.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
