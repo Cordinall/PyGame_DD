@@ -26,21 +26,9 @@ class Dangeon_Room_NonAction:
 
     def VisualGeneration(self):
 
-        match self.__room_size:
-            case 1:
-                print(self.__Readtxt("Dangeon\Gen\Size\Size_1.txt"))
-            case 2:
-                print(self.__Readtxt("Dangeon\Gen\Size\Size_2.txt"))
-            case 3:
-                print(self.__Readtxt("Dangeon\Gen\Size\Size_3.txt"))
+        print(self.__Readtxt(f"Dangeon\Gen\Size\Size_{self.__room_size}.txt"))
 
-        match self.__room_biome:
-            case 1:
-                print(self.__Readtxt("Dangeon\Gen\Bioms\Stone_room_1.txt"))
-            case 2:
-                print(self.__Readtxt("Dangeon\Gen\Bioms\Stone_room_2.txt"))
-            case 3:
-                print(self.__Readtxt("Dangeon\Gen\Bioms\Stone_room_3.txt"))
+        print(self.__Readtxt(f"Dangeon\Gen\Bioms\Stone_room_{self.__room_biome}.txt"))
 
         
 class Dangeon_Room_Action_Chest:
@@ -65,21 +53,9 @@ class Dangeon_Room_Action_Chest:
 
     def VisualGeneraton(self):
 
-        match self.__chest_type:
-            case 1:
-                print(self.__Readtxt("Dungeon_Active\Gen\Chest\Type\Type_usual.txt"))
-            case 2:
-                print(self.__Readtxt("Dungeon_Active\Gen\Chest\Type\Type_unusual.txt"))
-            case 3:
-                print(self.__Readtxt("Dungeon_Active\Gen\Chest\Type\Type_extended.txt"))
+        print(self.__Readtxt(f"Dungeon_Active\Gen\Chest\Type\Type_{self.__chest_type}.txt"))
 
-        match self.__chest_size:
-            case 1:
-                print(self.__Readtxt("Dungeon_Active\Gen\Chest\Size\Size_little.txt"))
-            case 2:
-                print(self.__Readtxt("Dungeon_Active\Gen\Chest\Size\Size_middle.txt"))
-            case 3:
-                print(self.__Readtxt("Dungeon_Active\Gen\Chest\Size\Size_big.txt"))
+        print(self.__Readtxt(f"Dungeon_Active\Gen\Chest\Size\Size_{self.__chest_size}.txt"))
 
     def ItemGeneration(self):
 
@@ -216,7 +192,7 @@ class Dangeon_Action_Player_Conqueror:
         self.__player_body = Player_body
         self.__player_hp = Player_hp
 
-        # 0 номер в боди - мили, 1 - ботинки, 2 - штаны, 3 - торс, 4 - руки, 5 - голова
+        # 0 пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅ, 1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 2 - пїЅпїЅпїЅпїЅпїЅ, 3 - пїЅпїЅпїЅпїЅ, 4 - пїЅпїЅпїЅпїЅ, 5 - пїЅпїЅпїЅпїЅпїЅпїЅ
 
     def __Readtxt(self, adr):
       ans = ""
