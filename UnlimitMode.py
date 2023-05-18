@@ -120,6 +120,7 @@ def EverlastMode():
         Chest = Dangeon_Room_Action_Chest(Random_Chest_Size(), Random_Chest_Type(), Random_Chest_TType(), Random_Chest_Dmg(Dangeon_difficult, Player))
         Enemy = Dangeon_Room_Action_Enemy(Random_Enemy_Name(), Random_Enemy_Dmg(Dangeon_level, Player), Random_Enemy_Hp(Dangeon_level, Player))
 
+        Chest_num = 1
         Enemy_num = 1
         Sleep_num = 0
 
@@ -180,7 +181,7 @@ def EverlastMode():
                 else:
                     print("")
             
-            elif Player_answer == "2":
+            elif Player_answer == "2" and Chest_num > 0:
 
                 print("")
                 print("1. Сундук")
@@ -200,9 +201,17 @@ def EverlastMode():
 
                     Player.InventoryAdd(Item)
 
+                    Chest_num -= 1
+
+            elif Player_answer == "2" and Chest_num == 0:
+
+                print("")
+                print("Оъекты для взаимодействия отсутствуют.")
+
             elif Player_answer == "3" and Sleep_num < 3:
 
                 Player.HpAdd(Player_HpRandomHeal())
+                Sleep_num += 1
 
             elif Player_answer == "3" and Sleep_num >= 3:
 
