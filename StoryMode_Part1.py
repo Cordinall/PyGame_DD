@@ -86,10 +86,16 @@ def StoryMode_Part1():
     Player = Dangeon_Action_Player_Conqueror("Пустой", "Ещё один житель Подземелья", [], [(1,  "onehand", "hand", "Руки", "Всё в ваших руках", 1), (2,  "tissue", "boots", "Ботики", "Ботнки из обрывков какой-то ткани", 8),  (3,  "tissue", "leggs", "Старые штаны", "Старые штаны, покрытые пылью и липкой субстанцией", 4), (4, "tissue", "chest", "Порваная рубаха", "Старая, изодранная рубаха. Возможно её можно носить", 5), (5, "tissue", "arms", "Тканевая повязка", "Тканевая повязка, весьма грязная.", 8), (6, "tissue", "head", "Влажная тканевая повязка", "Мокрая тканевая повязка", 1)], 100)
     Player_hp = 100
 
-    Body_watch = 0
+    Situation = 0
+    Water = True
+    Body_watch = False
     ExitSituation = 0
     while ExitSituation == 0:
-
+        
+        if Body_watch == False and Water == True:
+            Situation = 1
+        elif Body_watch == True and Water == True:
+            Situation = 2
 
         Player_answer = input("\n1. Осмотреться 2. Взаимодействовать 3. Отдыхать\n")
 
@@ -105,7 +111,7 @@ def StoryMode_Part1():
 
             Player_answer = input("\n1. Вода\n")
 
-            if Player_answer == "1" and Body_watch == "0":
+            if Player_answer == "1" and Situation == 1:
 
                 print("Ваш взгляд размыт, поэтому вам не удаётся разглядеть воду в подробностях, но, принюхавшись, вы обнаружили отсутствие запаха.")
                 print("Лужа неболшая, вряд ли получится распределить её на несколько задач.")
@@ -126,7 +132,7 @@ def StoryMode_Part1():
                 elif Player_answer == "3":
                     continue
 
-            elif Player_answer == "1" and Body_watch == "1":
+            elif Player_answer == "1" and Situation == 2:
 
                 print("Ваш взгляд размыт, поэтому вам не удаётся разглядеть воду в подробностях, но, принюхавшись, вы обнаружили отсутствие запаха.")
                 print("Лужа неболшая, вряд ли получится распределить её на несколько задач.")
@@ -145,16 +151,16 @@ def StoryMode_Part1():
                     break
 
                 elif Player_answer == "3":
-                    continue
-
-                elif Player_answer == "4":
-
-                    print("Вы снимаете с руки тканевую повязку и стараетесь мныть грязь с её поверхности.")
+                    print("Вы снимаете с руки тканевую повязку и стараетесь смыть грязь с её поверхности.")
                     print("Грязь отмывается с трудом, но в конце концов поддаётся вашим усилиям.")
                     print("Под слоем грязи вы обнаруживаете белую повязку с тремя параллельными линиями, расположенными вертикально.")
 
-                    Player.BodyChangeArms((5, "tissue", "arms", "Тканевая повязка", "Белая повязка с тремя параллельными линиями, расположенными вертикально.", 8))
+                    Player.InventoryAdd((5, "tissue", "arms", "Тканевая повязка", "Белая повязка с тремя параллельными линиями, расположенными вертикально.", 8))
+                    Player.BodyChangeArms(5)
                     Player.InventoryDel(5)
+
+                elif Player_answer == "4":
+                    continue
 
         elif Player_answer == "3":
 
@@ -167,17 +173,21 @@ def StoryMode_Part1():
 
         elif Player_answer == "M" or Player_answer == "m":
             Player_body_check(Player)
-            Body_watch = 1
+            Body_watch = True
 
         elif Player_answer == "H" or Player_answer == "h":
             print("Вы не испытываете болевых ощущуений и чувствете себя вполне здоровым")
 
     print("Ваше самочувствие улучшилось, а дымка в глазах почти пропала.")
-
+    
+    Torch = False
     ExitSituation = 0
     while ExitSituation == 0:
 
-        torch = 0
+        if Torch == False:
+            Situation = 1
+        elif Torch == True:
+            Situation = 2
 
         Player_answer = input("\n1. Осмотреться 2. Взаимодействовать 3. Отдыхать\n")
 
@@ -186,6 +196,7 @@ def StoryMode_Part1():
             print("Вы пытаетесь встать. Весьма удачно. Вы обнаруживаете себя в окружении пещерных стен.")
             print("Единственным источником света остаётся факел, висящий на одной из стен. Вокруг сухо, но весьма прохладно.")
             print("")
+            print("Вдали комнаты виднеется тёмный участок стены. Он словно пожирает свет, исходящий от факела, освещающего комнату.")
 
         elif Player_answer == "2":
 
