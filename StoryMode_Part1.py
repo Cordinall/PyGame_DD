@@ -109,7 +109,7 @@ def StoryMode_Part1():
 
         elif Player_answer == "2":
 
-            Player_answer = input("\n1. Вода\n")
+            Player_answer = input("\n1. Вода 2. Назад\n")
 
             if Player_answer == "1" and Situation == 1:
 
@@ -162,6 +162,9 @@ def StoryMode_Part1():
                 elif Player_answer == "4":
                     continue
 
+            elif Player_answer == "2":
+                continue
+
         elif Player_answer == "3":
 
             print("Вы стараетесь отдохнуть. Ваши веки постепенно тяжелеют и в конце концов вы засыпаете.")
@@ -180,6 +183,7 @@ def StoryMode_Part1():
 
     print("Ваше самочувствие улучшилось, а дымка в глазах почти пропала.")
     
+    Trystoexit = 0
     Torch = False
     ExitSituation = 0
     while ExitSituation == 0:
@@ -188,6 +192,12 @@ def StoryMode_Part1():
             Situation = 1
         elif Torch == True:
             Situation = 2
+        elif Torch == False and Trystoexit == 0:
+            Situation = 3
+        elif Torch == False and Trystoexit == 1:
+            Situation = 4
+        elif Torch == False and Trystoexit == 2:
+            Situation = 5
 
         Player_answer = input("\n1. Осмотреться 2. Взаимодействовать 3. Отдыхать\n")
 
@@ -198,9 +208,182 @@ def StoryMode_Part1():
             print("")
             print("Вдали комнаты виднеется тёмный участок стены. Он словно пожирает свет, исходящий от факела, освещающего комнату.")
 
+        elif Player_answer == "2" and Situation == 1:
+
+            Player_answer = input("\n1. Факел 2. Участок стены 3. Назад\n")
+
+            if Player_answer == "1":
+
+                print("Вы подходите к факелу. Он выглядит явно не новым, половина факела уже выгорела.")
+
+                Player_answer = input("\n1. Взять факел 2. Назад\n")
+
+                if Player_answer == "1":
+
+                    print("Вы взяли факел.")
+                    Player.InventoryAdd((10,  "onehand", "hand", "Факел", "Вполовину сгоревший факел", 1))
+                    Player.BodyChangeArms(10)
+                    Player.InventoryDel(1)
+                    Torch = True
+
+                if Player_answer == "2":
+
+                    print("Вы отходите от факела к центру комнаты.")
+                    continue
+
+            elif Player_answer == "2":
+
+                print("Вы подходите к тёмному участку стены. У вас возникает странное предчуствие опасности.")
+
+                Player_answer = input("\n1. Дотронуться до тьмы 2. Назад\n")
+
+                if Player_answer == "1":
+
+                    print("Вы пытаетесь дотронуться до тёмного участка стены. Вы ощущаете резкую боль в той руке, что дотронулась до тьмы.")
+                    print("Вы инстинктивно отшатываетесь от стены. Боль быстро проходит, но неприяное ощущуение в руке остаётся ещё некоторое время.")
+                    Trystoexit += 1
+
+                elif Player_answer == "2":
+                    continue
+
+        elif Player_answer == "2" and Situation == 2:
+
+            Player_answer = input("\n1. Участок стены 2. Назад\n")
+
+            if Player_answer == "1":
+
+                print("Вы подходите к стене с факелом в руках. Первое время ничего не происходит, но когда вы подходите вплотную к тьме, она расступается.")
+                print("Перед вами освещается небольшой участок каменистого пола.")
+
+                Player_answer = input("\n1. Вперёд 2. Назад\n")
+
+                if Player_answer == "1":
+
+                    print("Вы проходите на только что освещённый участок пола с факелом в руках. Перед вами открывается пещерный коридор.")
+                    print("Единственным источником освещения остаётся факел.")
+
+                    ExitSituation = 1
+
+            elif Player_answer == "2":
+                continue
+
+        elif Player_answer == "2" and Situation == 3:
+
+            Player_answer = input("\n1. Факел 2. Участок стены 3. Назад\n")
+
+            if Player_answer == "1":
+
+                print("Вы подходите к факелу. Он выглядит явно не новым, половина факела уже выгорела.")
+
+                Player_answer = input("\n1. Взять факел 2. Назад\n")
+
+                if Player_answer == "1":
+
+                    print("Вы взяли факел.")
+                    Player.InventoryAdd((10,  "onehand", "hand", "Факел", "Вполовину сгоревший факел", 1))
+                    Player.BodyChangeArms(10)
+                    Player.InventoryDel(1)
+                    Torch = True
+
+                if Player_answer == "2":
+
+                    print("Вы отходите от факела к центру комнаты.")
+                    continue
+
+            elif Player_answer == "2":
+
+                print("Вы подходите к тёмному участку стены. У вас возникает странное предчуствие опасности.")
+
+                Player_answer = input("\n1. Дотронуться до тьмы 2. Назад\n")
+
+                if Player_answer == "1":
+
+                    print("Вы пытаетесь дотронуться до тёмного участка стены. Вы ощущаете резкую боль в той руке, что дотронулась до тьмы.")
+                    print("Вы инстинктивно отшатываетесь от стены. Боль быстро проходит, но неприяное ощущуение в руке остаётся ещё некоторое время.")
+                    print("Поначалу вы этого не заметили, но боль не столь сильна. А вы испытываете странное ощущение, которое сложно описать.")
+                    Trystoexit += 1
+
+                elif Player_answer == "2":
+                    continue
+
+        elif Player_answer == "2" and Situation == 4:
+
+            Player_answer = input("\n1. Факел 2. Участок стены 3. Назад\n")
+
+            if Player_answer == "1":
+
+                print("Вы подходите к факелу. Он выглядит явно не новым, половина факела уже выгорела.")
+
+                Player_answer = input("\n1. Взять факел 2. Назад\n")
+
+                if Player_answer == "1":
+
+                    print("Вы взяли факел.")
+                    Player.InventoryAdd((10,  "onehand", "hand", "Факел", "Вполовину сгоревший факел", 1))
+                    Player.BodyChangeArms(10)
+                    Player.InventoryDel(1)
+                    Torch = True
+
+                if Player_answer == "2":
+
+                    print("Вы отходите от факела к центру комнаты.")
+                    continue
+
+            elif Player_answer == "2":
+
+                print("Вы подходите к тёмному участку стены. У вас возникает странное предчуствие опасности.")
+
+                Player_answer = input("\n1. Дотронуться до тьмы 2. Назад\n")
+
+                if Player_answer == "1":
+
+                    print("Вы пытаетесь дотронуться до тёмного участка стены. Вы ощущаете резкую боль в той руке, что дотронулась до тьмы.")
+                    print("Вы инстинктивно отшатываетесь от стены. Боль быстро проходит, но неприяное ощущуение в руке остаётся ещё некоторое время.")
+                    print("Ощущение, испытанное в предыдущий раз понемногу усиливается. Боль всё ещё остаётся, но кажется незначительной.")
+                    Trystoexit += 1
+
+                elif Player_answer == "2":
+                    continue
+
+        elif Player_answer == "2" and Situation == 5:
+
+            print("Вы подходите к факелу. Он выглядит явно не новым, половина факела уже выгорела.")
+
+            Player_answer = input("\n1. Взять факел 2. Назад\n")
+
+            if Player_answer == "1":
+
+                print("Вы взяли факел.")
+                Player.InventoryAdd((10,  "onehand", "hand", "Факел", "Вполовину сгоревший факел", 1))
+                Player.BodyChangeArms(10)
+                Player.InventoryDel(1)
+                Torch = True
+
+            if Player_answer == "2":
+
+                print("Вы отходите от факела к центру комнаты.")
+                continue
+
         elif Player_answer == "2":
 
-            print("Вам не с чем взаимодействовать.")
+            print("Вы подходите к тёмному участку стены. У вас возникает странное предчуствие опасности.")
+
+            Player_answer = input("\n1. Дотронуться до тьмы 2. Назад\n")
+
+            if Player_answer == "1":
+
+                print("Боль пропадает. Ощущения от контакта со стеной непроглядной тьмы становятся всё яснее.")
+                print("Вы дотрагиваетесь до стены ещё раз, чувствуя как рука проходит сквозь стену. Вы не ощущаете боли или радости.")
+                print("Чувство, испытываемое вами не похожк ни на боль, ни на радость. Скорее просто удовлетворение чем - то.")
+
+                Player_answer = input("\n1. Вперёд 2. Назад\n")
+
+                print("Вы проникаете внутрь стены. Зрение не может уловить ни единого луча света.")
+                print("Идя на ощупь, вы ощущаете пещерные стены и каменистый пол.")
+                ExitSituation = 1
+
+            elif Player_answer == "2":
+                continue
 
         elif Player_answer == "3":
 
