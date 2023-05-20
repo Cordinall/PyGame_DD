@@ -123,7 +123,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
         ExitRoom = 0
         while ExitRoom == 0:
 
-            print("1. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 3. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
+            print("1. Осмотреться 2. Взаимодействие 3. Отдых")
 
             Player_answer = input("\n")
 
@@ -131,12 +131,12 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
                 Chest.VisualGeneraton()
                 if Enemy_num > 0:
-                    print(f"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: {Enemy_num}")
+                    print(f"Количество врагов: {Enemy_num}")
                     Enemy.VisualGeneraton()
                     ExitBattle = 0
                     while ExitBattle == 0:
                         print("")
-                        print("1. пїЅпїЅпїЅпїЅпїЅ 2. пїЅпїЅпїЅпїЅпїЅпїЅ")
+                        print("1. Атака 2. Защита")
 
                         Player_answer = input("\n")
 
@@ -154,13 +154,13 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
                         else:
 
-                            print("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.")
+                            print("Вы пропустили ход.")
 
                             Player.HpReduction(Player_HpReduction(Enemy.DamageDeal(), Player))
 
-                        print(f"пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {Player.HpVis()}")
+                        print(f"Игрок: {Player.HpVis()}")
                         print("")
-                        print(f"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: {Enemy.HpVis()}")
+                        print(f"Враг: {Enemy.HpVis()}")
 
                         if Enemy.HpVis() <= 0:
                             Enemy.VisualDeath()
@@ -168,7 +168,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                             print("")
 
                             if Enemy_num == 0:
-                                print("Р’С‹ РјРѕР¶РµС‚Рµ РїРѕРєРёРЅСѓС‚СЊ РєРѕРјРЅР°С‚Сѓ. Р’РІРµРґРёС‚Рµ 'Ex' РґР»СЏ РІС‹С…РѕРґР°")
+                                print("Все враги в пределах досигаемости повержены. Введите 'Ex' для перехода в следующую комнату.")
                                 Player.HpAdd(20)
                                 ExitBattle = 1
 
@@ -185,19 +185,19 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
             elif Player_answer == "2" and Chest_num > 0:
 
                 print("")
-                print("1. пїЅпїЅпїЅпїЅпїЅпїЅ")
+                print("1. Сундук")
 
                 Player_answer = input()
 
                 if Player_answer == "1":
 
                     print("")
-                    print("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
+                    print("Вы открываете сундук.")
                     
                     Item = Chest.ItemGeneration()
 
                     print("=====================================================")
-                    print(f"пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ {Item[3]} пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ {Item[5]}")
+                    print(f"Вы получаете {Item[3]} с ключевой характеристикой {Item[5]}")
                     print("=====================================================\n")
 
                     Player.InventoryAdd(Item)
@@ -207,7 +207,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
             elif Player_answer == "2" and Chest_num == 0:
 
                 print("")
-                print("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
+                print("В комнате не с чем взаимодействовать.")
 
             elif Player_answer == "3" and Sleep_num < 3:
 
@@ -217,14 +217,14 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
             elif Player_answer == "3" and Sleep_num >= 3:
 
                 print("")
-                print("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")
+                print("Вы достаточно отдохнули.")
 
             elif Player_answer == "I" or Player_answer == "i":
 
                 Inv_list = Player.InventoryOutput()
 
                 print("=====================================================")
-                print("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:")
+                print("Инвентарь:")
                 print("=====================================================")
 
                 for i in Inv_list:
@@ -234,14 +234,14 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                     print("-------------------------------------------------------")
 
                 print("")
-                print("1. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 3. пїЅпїЅпїЅпїЅпїЅ")
+                print("1. Использовать предмет 2. Удалить предмет 3. Назад")
 
                 Player_answer = input()
 
                 if Player_answer == "1":
 
                     print("")
-                    print("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ( пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ )")
+                    print("Введите ID предмета ( Первая цияра в описании )")
 
                     Player_answer = int(input())
 
@@ -265,7 +265,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                 elif Player_answer == "2":
                     
                     print("")
-                    print("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ( пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ )")
+                    print("Введите ID предмета ( Первая цияра в описании )")
 
                     Player_answer = int(input())
 
@@ -294,7 +294,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
             elif Player_answer == "Ex" and Enemy_num <= 0:
 
                 print("")
-                print("РњСЏРіРєРёР№ СЃРІРµС‚ РѕР±РІРѕР»Р°РєРёРІР°РµС‚ РІР°СЃ. РџСЂРёСЏС‚РЅС‹Рµ С‡СѓРІС‚РІР° С‚РµРїР»РѕС‚С‹ Рё СЃРїРѕРєРѕР№СЃС‚РІРёСЏ Р±С‹СЃС‚СЂРѕ СЃРјРµРЅСЏСЋС‚СЃСЏ РЅР°\nСЂРёРІС‹С‡РЅС‹Рµ С…РѕР»РѕРґ Рё РЅР°СЃС‚РѕСЂРѕР¶РµРЅРЅРѕСЃС‚СЊ\n")
+                print("Мягкий свет окутывает вас, даря ощущение покоя и удовлетворённости. Это длится не долго. Пара секунд и вы вновь оказываетесь внутри очередной комнаты.")
                 
                 if Player.HpVis() < 41:
                     Dangeon_difficult -= 1
@@ -308,4 +308,4 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
             elif Player_answer == "Ex" and Enemy_num > 0:
 
                 print("")
-                print("пїЅпїЅпїЅ - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
+                print("Вы не можете покинуть это место.")
