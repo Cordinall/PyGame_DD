@@ -1,8 +1,9 @@
 # -*- coding: cp1251 -*-
 from Dangeon_Room import *
+from PYGame_SaveLoad import *
 import random
 
-def StoryMode_Part1():
+def StoryMode_Part1(Player):
 
     def Player_inventory_check(Player):
 
@@ -85,7 +86,7 @@ def StoryMode_Part1():
     print("Вы приходите в себя в тёмном помещении. Ваш взгляд затуманен и единственное, что вы можете спокойно разглядеть - яркое пятно, излучающее свет.")
     print("Вокруг довольно сухо, но вы слышите как рядом с вами падают капли, разбиваясь о воду.")
 
-    Player = Dangeon_Action_Player_Conqueror("Пустой", "Ещё один житель Подземелья", [], [(1,  "onehand", "hand", "Руки", "Всё в ваших руках", 1), (2,  "tissue", "boots", "Ботики", "Ботнки из обрывков какой-то ткани", 8),  (3,  "tissue", "leggs", "Старые штаны", "Старые штаны, покрытые пылью и липкой субстанцией", 4), (4, "tissue", "chest", "Порваная рубаха", "Старая, изодранная рубаха. Возможно её можно носить", 5), (5, "tissue", "arms", "Тканевая повязка", "Тканевая повязка, весьма грязная.", 8), (6, "tissue", "head", "Влажная тканевая повязка", "Мокрая тканевая повязка", 1)], 100)
+    Player = Player
 
     Situation = 0
     Water = True
@@ -267,6 +268,7 @@ def StoryMode_Part1():
                     print("Единственным источником освещения остаётся факел.")
 
                     ExitSituation = 1
+                    StoryMode_Save(1, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
 
             elif Player_answer == "2":
                 continue
@@ -396,6 +398,7 @@ def StoryMode_Part1():
                     print("Идя на ощупь, вы ощущаете пещерные стены и каменистый пол.")
 
                     ExitSituation = 1
+                    StoryMode_Save(1, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
 
                 elif Player_answer == "2":
                     continue

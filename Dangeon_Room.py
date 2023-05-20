@@ -12,7 +12,7 @@ class Dangeon_Room_NonAction:
     # Room_size = 1 or 2 or 3. 1 - little room, 2 - medium, 3 - high.
     # Room_biome = 1 or 2 or 3 or 4 - 1 - stone room, 2 - green stone room, 3 - bloody stone room, 4 - bloody green stone room
 
-    def __Readtxt(self, adr):
+    def __readtxt(self, adr):
       ans = ""
       for i in open(adr, encoding="utf-8"):
         endans = i.strip()
@@ -26,8 +26,8 @@ class Dangeon_Room_NonAction:
 
     def VisualGeneration(self):
 
-        print(self.__Readtxt(f"Dangeon\Gen\Bioms\Stone_room_{self.__room_biome}.txt"))
-        print(self.__Readtxt(f"Dangeon\Gen\Size\Size_{self.__room_size}.txt"))
+        print(self.__readtxt(f"Dangeon\Gen\Bioms\Stone_room_{self.__room_biome}.txt"))
+        print(self.__readtxt(f"Dangeon\Gen\Size\Size_{self.__room_size}.txt"))
         
 class Dangeon_Room_Action_Chest:
 
@@ -37,7 +37,7 @@ class Dangeon_Room_Action_Chest:
         self.__chest_treasure_type = Chest_treasure_type
         self.__chest_treasure_item_stat = Chest_treasure_item_stat
 
-    def __Readtxt(self, adr):
+    def __readtxt(self, adr):
       ans = ""
       for i in open(adr, encoding="utf-8"):
         endans = i.strip()
@@ -51,8 +51,8 @@ class Dangeon_Room_Action_Chest:
 
     def VisualGeneraton(self):
 
-        print(self.__Readtxt(f"Dungeon_Active\Gen\Chest\Size\Size_{self.__chest_size}.txt"))
-        print(self.__Readtxt(f"Dungeon_Active\Gen\Chest\Type\Type_{self.__chest_type}.txt"))
+        print(self.__readtxt(f"Dungeon_Active\Gen\Chest\Size\Size_{self.__chest_size}.txt"))
+        print(self.__readtxt(f"Dungeon_Active\Gen\Chest\Type\Type_{self.__chest_type}.txt"))
 
     def ItemGeneration(self):
 
@@ -60,54 +60,54 @@ class Dangeon_Room_Action_Chest:
         
         if self.__chest_treasure_type == 0:
             Melee_name_rnd = random.randint(1,5)
-            Melee_name = self.__Readtxt(f"Items\Melee\\x0{Melee_name_rnd}.txt")
-            Melee_type = self.__Readtxt(f"Items\Melee\\x0{Melee_name_rnd + 200}.txt")
-            Melee_story = self.__Readtxt(f"Items\Melee\\x0{Melee_name_rnd + 100}.txt")
+            Melee_name = self.__readtxt(f"Items\Melee\\x0{Melee_name_rnd}.txt")
+            Melee_type = self.__readtxt(f"Items\Melee\\x0{Melee_name_rnd + 200}.txt")
+            Melee_story = self.__readtxt(f"Items\Melee\\x0{Melee_name_rnd + 100}.txt")
             Melee_dmg = self.__chest_treasure_item_stat
 
             return Item.MeleeGeneration(Melee_name, Melee_type, Melee_story, Melee_dmg)
 
         elif self.__chest_treasure_type == 1:
             Boots_name_rnd = random.randint(1,2)
-            Boots_name = self.__Readtxt(f"Items\Boots\\x0{Boots_name_rnd}.txt")
-            Boots_type = self.__Readtxt(f"Items\Boots\\x0{Boots_name_rnd + 200}.txt")
-            Boots_story = self.__Readtxt(f"Items\Boots\\x0{Boots_name_rnd + 100}.txt")
+            Boots_name = self.__readtxt(f"Items\Boots\\x0{Boots_name_rnd}.txt")
+            Boots_type = self.__readtxt(f"Items\Boots\\x0{Boots_name_rnd + 200}.txt")
+            Boots_story = self.__readtxt(f"Items\Boots\\x0{Boots_name_rnd + 100}.txt")
             Boots_def = self.__chest_treasure_item_stat
 
             return Item.BootsGeneration(Boots_name, Boots_type, Boots_story, Boots_def)
 
         elif self.__chest_treasure_type == 2:
             Leggs_name_rnd = random.randint(1,2)
-            Leggs_name = self.__Readtxt(f"Items\Leggs\\x0{Leggs_name_rnd}.txt")
-            Leggs_type = self.__Readtxt(f"Items\Leggs\\x0{Leggs_name_rnd + 200}.txt")
-            Leggs_story = self.__Readtxt(f"Items\Leggs\\x0{Leggs_name_rnd + 100}.txt")
+            Leggs_name = self.__readtxt(f"Items\Leggs\\x0{Leggs_name_rnd}.txt")
+            Leggs_type = self.__readtxt(f"Items\Leggs\\x0{Leggs_name_rnd + 200}.txt")
+            Leggs_story = self.__readtxt(f"Items\Leggs\\x0{Leggs_name_rnd + 100}.txt")
             Leggs_def = self.__chest_treasure_item_stat
 
             return Item.LeggsGeneration(Leggs_name, Leggs_type, Leggs_story, Leggs_def)
 
         elif self.__chest_treasure_type == 3:
             Chest_name_rnd = random.randint(1,2)
-            Chest_name = self.__Readtxt(f"Items\Chest\\x0{Chest_name_rnd}.txt")
-            Chest_type = self.__Readtxt(f"Items\Chest\\x0{Chest_name_rnd + 200}.txt")
-            Chest_story = self.__Readtxt(f"Items\Chest\\x0{Chest_name_rnd + 100}.txt")
+            Chest_name = self.__readtxt(f"Items\Chest\\x0{Chest_name_rnd}.txt")
+            Chest_type = self.__readtxt(f"Items\Chest\\x0{Chest_name_rnd + 200}.txt")
+            Chest_story = self.__readtxt(f"Items\Chest\\x0{Chest_name_rnd + 100}.txt")
             Chest_def = self.__chest_treasure_item_stat
 
             return Item.ChestGeneration(Chest_name, Chest_type, Chest_story, Chest_def)
 
         elif self.__chest_treasure_type == 4:
             Arms_name_rnd = random.randint(1,2)
-            Arms_name = self.__Readtxt(f"Items\Arms\\x0{Arms_name_rnd}.txt")
-            Arms_type = self.__Readtxt(f"Items\Arms\\x0{Arms_name_rnd + 200}.txt")
-            Arms_story = self.__Readtxt(f"Items\Arms\\x0{Arms_name_rnd + 100}.txt")
+            Arms_name = self.__readtxt(f"Items\Arms\\x0{Arms_name_rnd}.txt")
+            Arms_type = self.__readtxt(f"Items\Arms\\x0{Arms_name_rnd + 200}.txt")
+            Arms_story = self.__readtxt(f"Items\Arms\\x0{Arms_name_rnd + 100}.txt")
             Arms_def = self.__chest_treasure_item_stat
 
             return Item.ArmsGeneration(Arms_name, Arms_type, Arms_story, Arms_def)
 
         elif self.__chest_treasure_type == 5:
             Head_name_rnd = random.randint(1,2)
-            Head_name = self.__Readtxt(f"Items\Head\\x0{Head_name_rnd}.txt")
-            Head_type = self.__Readtxt(f"Items\Head\\x0{Head_name_rnd + 200}.txt")
-            Head_story = self.__Readtxt(f"Items\Head\\x0{Head_name_rnd + 100}.txt")
+            Head_name = self.__readtxt(f"Items\Head\\x0{Head_name_rnd}.txt")
+            Head_type = self.__readtxt(f"Items\Head\\x0{Head_name_rnd + 200}.txt")
+            Head_story = self.__readtxt(f"Items\Head\\x0{Head_name_rnd + 100}.txt")
             Head_def = self.__chest_treasure_item_stat
 
             return Item.HeadGeneration(Head_name, Head_type, Head_story, Head_def)
@@ -140,7 +140,7 @@ class Dangeon_Room_Action_Enemy:
         self.__enemy_hp = Enemy_hp
 
 
-    def __Readtxt(self, adr):
+    def __readtxt(self, adr):
       ans = ""
       for i in open(adr, encoding="utf-8"):
         endans = i.strip()
@@ -154,13 +154,13 @@ class Dangeon_Room_Action_Enemy:
 
     def VisualGeneraton(self):
 
-        print(self.__Readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_present_{self.__enemy_name}.txt"))
-        print(self.__Readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_name_{self.__enemy_name}.txt"))
-        print(self.__Readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_story_{self.__enemy_name}.txt"))
+        print(self.__readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_present_{self.__enemy_name}.txt"))
+        print(self.__readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_name_{self.__enemy_name}.txt"))
+        print(self.__readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_story_{self.__enemy_name}.txt"))
 
     def VisualDeath(self):
 
-        print(self.__Readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_death_{self.__enemy_name}.txt"))
+        print(self.__readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_death_{self.__enemy_name}.txt"))
 
     def DamageDeal(self):
 
@@ -191,7 +191,7 @@ class Dangeon_Action_Player_Conqueror:
 
         # 0 ����� � ���� - ����, 1 - �������, 2 - �����, 3 - ����, 4 - ����, 5 - ������
 
-    def __Readtxt(self, adr):
+    def __readtxt(self, adr):
       ans = ""
       for i in open(adr, encoding="utf-8"):
         endans = i.strip()

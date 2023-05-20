@@ -28,6 +28,7 @@
     <Compile Include="Dangeon_Items.py" />
     <Compile Include="StoryMode.py" />
     <Compile Include="StoryMode_Part1.py" />
+    <Compile Include="PYGame_SaveLoad.py" />
     <Compile Include="TextApp.py" />
     <Compile Include="UnlimitHub.py" />
     <Compile Include="UnlimitMode.py" />

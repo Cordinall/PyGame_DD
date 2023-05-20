@@ -3,12 +3,12 @@ from Dangeon_Room import *
 import random
 from StoryMode_Part1 import *
 
-def StoryMode():
+def StoryMode(Game_CurrentStoryPart, Player_En):
 
-    Game_storystage = 0
+    Player = Player_En
 
-    match Game_storystage:
+    Game_CurrentStoryPart = Game_CurrentStoryPart
 
+    match Game_CurrentStoryPart:
         case 0:
-
-            StoryMode_Part1()
+            StoryMode_Part1(Player)

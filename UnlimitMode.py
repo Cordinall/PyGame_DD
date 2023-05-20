@@ -1,5 +1,6 @@
 # -*- coding: cp1251 -*-
 from Dangeon_Room import *
+from PYGame_SaveLoad import *
 import random
 
 def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
@@ -100,6 +101,8 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
             return 20
         elif rnd == 10:
             return 25
+        else:
+            return rnd
 
 
 
@@ -168,7 +171,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                             print("")
 
                             if Enemy_num == 0:
-                                print("Все враги в пределах досигаемости повержены. Введите 'Ex' для перехода в следующую комнату.")
+                                print("Все враги в пределах досигаемости повержены. Введите 'Ex' для перехода в следующую комнату. Введите 'Save' чтобы сохранить игру.")
                                 Player.HpAdd(20)
                                 ExitBattle = 1
 
@@ -203,6 +206,9 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                     Player.InventoryAdd(Item)
 
                     Chest_num -= 1
+
+                    if Chest_num > 0:
+                        Chest = Dangeon_Room_Action_Chest(Random_Chest_Size(), Random_Chest_Type(), Random_Chest_TType(), Random_Chest_Dmg(Dangeon_difficult, Player))
 
             elif Player_answer == "2" and Chest_num == 0:
 
@@ -289,7 +295,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
             elif Player_answer == "H" or Player_answer == "h":
 
-                print(f"пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {Player.HpVis()}")
+                print(f"Текущий уровень здоровья: {Player.HpVis()}")
 
             elif Player_answer == "Ex" and Enemy_num <= 0:
 
@@ -309,3 +315,25 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
                 print("")
                 print("Вы не можете покинуть это место.")
+
+            elif Player_answer == "Save" and Enemy_num <= 0:
+
+                print("")
+                print("Серебряный свет окутывает вас, даря ощущение спокойствия и защищённости.")
+                print("Выберите слот: от 1 до 4\n")
+                
+                Player_answer = input()
+
+                if Player_answer == "1":
+                    UnlimitMode_Save(1, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                elif Player_answer == "2":
+                    UnlimitMode_Save(2, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                elif Player_answer == "3":
+                    UnlimitMode_Save(3, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                elif Player_answer == "4":
+                    UnlimitMode_Save(4, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+
+            elif Player_answer == "Save" and Enemy_num > 0:
+
+                print("")
+                print("Вы не можете сделать это сейчас.")
