@@ -223,7 +223,7 @@ def StoryMode_Part1():
 
                     print("Вы взяли факел.")
                     Player.InventoryAdd((10,  "onehand", "hand", "Факел", "Вполовину сгоревший факел", 1))
-                    Player.BodyChangeArms(10)
+                    Player.BodyChangeMelee(10)
                     Player.InventoryDel(1)
                     Torch = True
 
