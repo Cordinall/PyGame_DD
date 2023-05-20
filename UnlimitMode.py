@@ -2,7 +2,7 @@
 from Dangeon_Room import *
 import random
 
-def EverlastMode():
+def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
     def Random_Room_Size():
 
@@ -51,7 +51,7 @@ def EverlastMode():
 
     def Random_Enemy_Name():
 
-        Name = random.randint(1,1)
+        Name = random.randint(1,2)
 
         return Name
 
@@ -103,15 +103,9 @@ def EverlastMode():
 
 
 
-    Player = Dangeon_Action_Player_Conqueror("Пустой", "Ещё один житель Подземелья", [], [(1,  "onehand", "hand", "Потрёпаный меч", "Весьма старый и сильно притупившийся меч из железа", 5), (2,  "tissue", "boots", "Ботики", "Ботнки из обрывков какой-то ткани", 8),  (3,  "tissue", "leggs", "Старые штаны", "Старые штаны, покрытые пылью и липкой субстанцией", 4), (4, "tissue", "chest", "Порваная рубаха", "Старая, изодранная рубаха. Возможно её можно носить", 5), (5, "tissue", "arms", "Кожаные наплечники", "Наплечники из старой кожи. Если особо не двигать плечами, кажутся удобными", 8), (6, "tissue", "head", "Влажная тканевая повязка", "Мокрая тканевая повязка", 1)], 100)
-    Dangeon_difficult = 5
+    Player = Player_En
+    Dangeon_difficult = Dangeon_difficult_En
     Dangeon_level = 1
-
-
-    print("Режим игры - Покорённый.")
-    print("I - инвентарь")
-    print("H - показатели здоровья")
-    print("M - текущее снаряжение, описание персонажа")
 
     Never = 0
     while Never == 0:
@@ -120,8 +114,8 @@ def EverlastMode():
         Chest = Dangeon_Room_Action_Chest(Random_Chest_Size(), Random_Chest_Type(), Random_Chest_TType(), Random_Chest_Dmg(Dangeon_difficult, Player))
         Enemy = Dangeon_Room_Action_Enemy(Random_Enemy_Name(), Random_Enemy_Dmg(Dangeon_level, Player), Random_Enemy_Hp(Dangeon_level, Player))
 
-        Chest_num = 1
-        Enemy_num = 1
+        Chest_num = Chest_Num_En
+        Enemy_num = Enemy_Num_En
         Sleep_num = 0
 
         Room.VisualGeneration()
@@ -170,11 +164,18 @@ def EverlastMode():
 
                         if Enemy.HpVis() <= 0:
                             Enemy.VisualDeath()
+                            Enemy_num -= 1
                             print("")
-                            print("Вы можете покинуть комнату. Введите 'Ex' для выхода")
-                            Player.HpAdd(20)
-                            ExitBattle = 1
-                            Enemy_num = 0
+
+                            if Enemy_num == 0:
+                                print("Вы можете покинуть комнату. Введите 'Ex' для выхода")
+                                Player.HpAdd(20)
+                                ExitBattle = 1
+
+                            elif Enemy_num > 0:
+                                Enemy = Dangeon_Room_Action_Enemy(Random_Enemy_Name(), Random_Enemy_Dmg(Dangeon_level, Player), Random_Enemy_Hp(Dangeon_level, Player))
+                                Player.HpAdd(20)
+                                ExitBattle = 1
 
                         print("")
 
@@ -293,7 +294,7 @@ def EverlastMode():
             elif Player_answer == "Ex" and Enemy_num <= 0:
 
                 print("")
-                print("Мягкий свет обволакивает вас. Приятные чувтва теплоты и спокойствия быстро сеняются на\nпривычные холод и настороженность\n")
+                print("Мягкий свет обволакивает вас. Приятные чувтва теплоты и спокойствия быстро сменяются на\nривычные холод и настороженность\n")
                 
                 if Player.HpVis() < 41:
                     Dangeon_difficult -= 1
@@ -301,6 +302,8 @@ def EverlastMode():
                     Dangeon_difficult += 1
 
                 ExitRoom = 1
+                Exit_list = [Dangeon_difficult, Player]
+                return Exit_list
 
             elif Player_answer == "Ex" and Enemy_num > 0:
 

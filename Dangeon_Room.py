@@ -27,7 +27,6 @@ class Dangeon_Room_NonAction:
     def VisualGeneration(self):
 
         print(self.__Readtxt(f"Dangeon\Gen\Bioms\Stone_room_{self.__room_biome}.txt"))
-
         print(self.__Readtxt(f"Dangeon\Gen\Size\Size_{self.__room_size}.txt"))
         
 class Dangeon_Room_Action_Chest:
@@ -53,7 +52,6 @@ class Dangeon_Room_Action_Chest:
     def VisualGeneraton(self):
 
         print(self.__Readtxt(f"Dungeon_Active\Gen\Chest\Size\Size_{self.__chest_size}.txt"))
-
         print(self.__Readtxt(f"Dungeon_Active\Gen\Chest\Type\Type_{self.__chest_type}.txt"))
 
     def ItemGeneration(self):
@@ -156,7 +154,7 @@ class Dangeon_Room_Action_Enemy:
 
     def VisualGeneraton(self):
 
-        print(self.__Readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_present_{1}.txt"))
+        print(self.__Readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_present_{self.__enemy_name}.txt"))
         print(self.__Readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_name_{self.__enemy_name}.txt"))
         print(self.__Readtxt(f"Dungeon_Active\Gen\Enemy\Enemy_story_{self.__enemy_name}.txt"))
 

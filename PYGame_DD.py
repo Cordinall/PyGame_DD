@@ -2,7 +2,7 @@
 from Dangeon_Room import *
 from StoryMode import *
 from ObserverMode import *
-from UnlimitMode import *
+from UnlimitHub import *
 from GuardianMode import *
 
 def Readtxt(adr):
@@ -59,7 +59,9 @@ while ExitMainMenu == 0:
         if Player_answer == "1":
             StoryMode()
         elif Player_answer == "2":
-            EverlastMode()
+            Player = Dangeon_Action_Player_Conqueror("Пустой", "Ещё один житель Подземелья", [], [(1,  "onehand", "hand", "Потрёпаный меч", "Весьма старый и сильно притупившийся меч из железа", 5), (2,  "tissue", "boots", "Ботики", "Ботнки из обрывков какой-то ткани", 8),  (3,  "tissue", "leggs", "Старые штаны", "Старые штаны, покрытые пылью и липкой субстанцией", 4), (4, "tissue", "chest", "Порваная рубаха", "Старая, изодранная рубаха. Возможно её можно носить", 5), (5, "tissue", "arms", "Кожаные наплечники", "Наплечники из старой кожи. Если особо не двигать плечами, кажутся удобными", 8), (6, "tissue", "head", "Влажная тканевая повязка", "Мокрая тканевая повязка", 1)], 100)
+            Dangeon_difficult = 5
+            Everlast_Hub(Dangeon_difficult, Player)
         elif Player_answer == "3":
             ObserverMode()
         elif Player_answer == "4":
