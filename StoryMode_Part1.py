@@ -267,8 +267,21 @@ def StoryMode_Part1(Player):
                     print("Вы проходите на только что освещённый участок пола с факелом в руках. Перед вами открывается пещерный коридор.")
                     print("Единственным источником освещения остаётся факел.")
 
-                    ExitSituation = 1
-                    StoryMode_Save(1, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                    print("=====================================================")
+                    print("Хотите продолжить?")
+                    print("")
+                    print("1. Да 2. Нет")
+                    print("=====================================================\n")
+
+                    Player_answer = input()
+
+                    if Player_answer == "1":
+                        StoryMode_Save(1, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                        return [Player, 0, 1]
+
+                    elif Player_answer == "2":
+                        StoryMode_Save(1, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                        return [Player, 1, 1]
 
             elif Player_answer == "2":
                 continue
@@ -397,8 +410,21 @@ def StoryMode_Part1(Player):
                     print("Вы проникаете внутрь стены. Зрение не может уловить ни единого луча света.")
                     print("Идя на ощупь, вы ощущаете пещерные стены и каменистый пол.")
 
-                    ExitSituation = 1
-                    StoryMode_Save(1, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                    print("=====================================================")
+                    print("Хотите продолжить?")
+                    print("")
+                    print("1. Да 2. Нет")
+                    print("=====================================================\n")
+
+                    Player_answer = input()
+
+                    if Player_answer == "1":
+                        StoryMode_Save(1, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                        return [Player, 0, 1]
+
+                    elif Player_answer == "2":
+                        StoryMode_Save(1, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                        return [Player, 1, 1]
 
                 elif Player_answer == "2":
                     continue

@@ -23,14 +23,16 @@
   <ItemGroup>
     <Compile Include="Dangeon_Room.py" />
     <Compile Include="GuardianMode.py" />
-    <Compile Include="ObserverMode.py" />
     <Compile Include="PYGame_DD.py" />
     <Compile Include="Dangeon_Items.py" />
     <Compile Include="StoryMode.py" />
     <Compile Include="StoryMode_Part1.py" />
     <Compile Include="PYGame_SaveLoad.py" />
+    <Compile Include="StoryMode_Part2.py" />
     <Compile Include="TextApp.py" />
+    <Compile Include="ObserverHub.py" />
     <Compile Include="UnlimitHub.py" />
+    <Compile Include="ObserverMode.py" />
     <Compile Include="UnlimitMode.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

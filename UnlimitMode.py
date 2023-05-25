@@ -13,7 +13,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
     def Random_Room_Biome():
 
-        Biome = random.randint(1,3)
+        Biome = random.randint(1,5)
 
         return Biome
 
@@ -25,7 +25,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
     def Random_Chest_Type():
 
-        Type = random.randint(1,3)
+        Type = random.randint(1,5)
 
         return Type
 
@@ -52,7 +52,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
     def Random_Enemy_Name():
 
-        Name = random.randint(1,2)
+        Name = random.randint(1,3)
 
         return Name
 
@@ -337,3 +337,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
                 print("")
                 print("Вы не можете сделать это сейчас.")
+
+            elif Player_answer == "Main":
+                Exit_list = [Dangeon_difficult, Player, 1]
+                return Exit_list

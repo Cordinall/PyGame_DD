@@ -1,8 +1,9 @@
 # -*- coding: cp1251 -*-
 from Dangeon_Room import *
+from PYGame_SaveLoad import *
 import random
 
-def ObserverMode():
+def ObserverMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
     def Random_Room_Size():
 
@@ -12,7 +13,7 @@ def ObserverMode():
 
     def Random_Room_Biome():
 
-        Biome = random.randint(1,3)
+        Biome = random.randint(1,5)
 
         return Biome
 
@@ -24,7 +25,7 @@ def ObserverMode():
 
     def Random_Chest_Type():
 
-        Type = random.randint(1,3)
+        Type = random.randint(1,5)
 
         return Type
 
@@ -51,7 +52,7 @@ def ObserverMode():
 
     def Random_Enemy_Name():
 
-        Name = random.randint(1,1)
+        Name = random.randint(1,3)
 
         return Name
 
@@ -71,23 +72,6 @@ def ObserverMode():
 
         return Hp
 
-    def Player_HpReduction(Damage, Player):
-
-        rnd = random.randint(1,5)
-        match rnd:
-            case 1:
-                Def = Player.BootsDefOutPut()
-            case 2:
-                Def = Player.LeggsDefOutPut()
-            case 3:
-                Def = Player.ChestDefOutPut()
-            case 4:
-                Def = Player.ArmsDefOutPut()
-            case 5:
-                Def = Player.HeadDefOutPut()
-
-        return Damage - Def
-
     def Player_HpRandomHeal():
 
         rnd = random.randint(0,10)
@@ -100,18 +84,14 @@ def ObserverMode():
             return 20
         elif rnd == 10:
             return 25
+        else:
+            return rnd
 
 
 
-    Player = Dangeon_Action_Player_Conqueror("Наблюдатель", "Незримая сущность, что бродит по подземелью с одной ему известной целью", [], [(1,  "onehand", "hand", "Потрёпаный меч", "Весьма старый и сильно притупившийся меч из железа", 5), (2,  "tissue", "boots", "Ботики", "Ботнки из обрывков какой-то ткани", 8),  (3,  "tissue", "leggs", "Старые штаны", "Старые штаны, покрытые пылью и липкой субстанцией", 4), (4, "tissue", "chest", "Порваная рубаха", "Старая, изодранная рубаха. Возможно её можно носить", 5), (5, "tissue", "arms", "Кожаные наплечники", "Наплечники из старой кожи. Если особо не двигать плечами, кажутся удобными", 8), (6, "tissue", "head", "Влажная тканевая повязка", "Мокрая тканевая повязка", 1)], 100)
-    Dangeon_difficult = 5
+    Player = Player_En
+    Dangeon_difficult = Dangeon_difficult_En
     Dangeon_level = 1
-
-
-    print("Режим игры - Наблюдатель.")
-    print("I - инвентарь")
-    print("H - показатели здоровья")
-    print("M - текущее снаряжение, описание персонажа")
 
     Never = 0
     while Never == 0:
@@ -120,6 +100,8 @@ def ObserverMode():
         Chest = Dangeon_Room_Action_Chest(Random_Chest_Size(), Random_Chest_Type(), Random_Chest_TType(), Random_Chest_Dmg(Dangeon_difficult, Player))
         Enemy = Dangeon_Room_Action_Enemy(Random_Enemy_Name(), Random_Enemy_Dmg(Dangeon_level, Player), Random_Enemy_Hp(Dangeon_level, Player))
 
+        Chest_num = Chest_Num_En
+        Enemy_num = Enemy_Num_En
         Sleep_num = 0
 
         Room.VisualGeneration()
@@ -127,18 +109,21 @@ def ObserverMode():
         ExitRoom = 0
         while ExitRoom == 0:
 
-            print("1. Осмотреться 2. Взаимодействовать 3. Следующая комната")
+            print("1. Осмотреться 2. Взаимодействие 3. Отдых")
 
             Player_answer = input("\n")
 
             if Player_answer == "1":
 
                 Chest.VisualGeneraton()
-                Enemy.VisualGeneraton()
-                print("")
-                print(f"Здоровье врага: {Enemy.HpVis()}")
+                if Enemy_num > 0:
+                    print(f"Количество врагов: {Enemy_num}")
+                    Enemy.VisualGeneraton()
+                    print(f"Враг: {Enemy.HpVis()}")
+                    Enemy_num -= 1
+                    Enemy = Dangeon_Room_Action_Enemy(Random_Enemy_Name(), Random_Enemy_Dmg(Dangeon_level, Player), Random_Enemy_Hp(Dangeon_level, Player))
             
-            elif Player_answer == "2":
+            elif Player_answer == "2" and Chest_num > 0:
 
                 print("")
                 print("1. Сундук")
@@ -148,7 +133,7 @@ def ObserverMode():
                 if Player_answer == "1":
 
                     print("")
-                    print("Вы открываете сундук")
+                    print("Вы открываете сундук.")
                     
                     Item = Chest.ItemGeneration()
 
@@ -158,17 +143,25 @@ def ObserverMode():
 
                     Player.InventoryAdd(Item)
 
-            elif Player_answer == "3":
+                    Chest_num -= 1
+
+                    if Chest_num > 0:
+                        Chest = Dangeon_Room_Action_Chest(Random_Chest_Size(), Random_Chest_Type(), Random_Chest_TType(), Random_Chest_Dmg(Dangeon_difficult, Player))
+
+            elif Player_answer == "2" and Chest_num == 0:
 
                 print("")
-                print("Мягкий свет обволакивает вас. Приятные чувтва теплоты и спокойствия быстро сеняются на\nпривычные холод и настороженность\n")
-                
-                if Player.HpVis() < 41:
-                    Dangeon_difficult -= 1
-                else:
-                    Dangeon_difficult += 1
+                print("В комнате не с чем взаимодействовать.")
 
-                ExitRoom = 1
+            elif Player_answer == "3" and Sleep_num < 3:
+
+                Player.HpAdd(Player_HpRandomHeal())
+                Sleep_num += 1
+
+            elif Player_answer == "3" and Sleep_num >= 3:
+
+                print("")
+                print("Вы достаточно отдохнули.")
 
             elif Player_answer == "I" or Player_answer == "i":
 
@@ -185,14 +178,14 @@ def ObserverMode():
                     print("-------------------------------------------------------")
 
                 print("")
-                print("1. Надеть предмет 2. Удалить предмет 3. Назад")
+                print("1. Использовать предмет 2. Удалить предмет 3. Назад")
 
                 Player_answer = input()
 
                 if Player_answer == "1":
 
                     print("")
-                    print("Введите id предмета ( Цифра в описании предмета )")
+                    print("Введите ID предмета ( Первая цияра в описании )")
 
                     Player_answer = int(input())
 
@@ -216,7 +209,7 @@ def ObserverMode():
                 elif Player_answer == "2":
                     
                     print("")
-                    print("Введите id предмета ( Цифра в описании предмета )")
+                    print("Введите ID предмета ( Первая цияра в описании )")
 
                     Player_answer = int(input())
 
@@ -240,4 +233,39 @@ def ObserverMode():
 
             elif Player_answer == "H" or Player_answer == "h":
 
-                print(f"Ваше здоровье: {Player.HpVis()}")
+                print(f"Текущий уровень здоровья: {Player.HpVis()}")
+
+            elif Player_answer == "Ex":
+
+                print("")
+                print("Мягкий свет окутывает вас, даря ощущение покоя и удовлетворённости. Это длится не долго. Пара секунд и вы вновь оказываетесь внутри очередной комнаты.")
+                
+                if Player.HpVis() < 41:
+                    Dangeon_difficult -= 1
+                else:
+                    Dangeon_difficult += 1
+
+                ExitRoom = 1
+                Exit_list = [Dangeon_difficult, Player, 0]
+                return Exit_list
+
+            elif Player_answer == "Save":
+
+                print("")
+                print("Серебряный свет окутывает вас, даря ощущение спокойствия и защищённости.")
+                print("Выберите слот: от 1 до 4\n")
+                
+                Player_answer = input()
+
+                if Player_answer == "1":
+                    ObserverMode_Save(1, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                elif Player_answer == "2":
+                    ObserverMode_Save(2, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                elif Player_answer == "3":
+                    ObserverMode_Save(3, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                elif Player_answer == "4":
+                    ObserverMode_Save(4, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+
+            elif Player_answer == "Main":
+                Exit_list = [Dangeon_difficult, Player, 1]
+                return Exit_list

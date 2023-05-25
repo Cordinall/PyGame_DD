@@ -104,7 +104,7 @@ class Dangeon_Room_Action_Chest:
             return Item.ArmsGeneration(Arms_name, Arms_type, Arms_story, Arms_def)
 
         elif self.__chest_treasure_type == 5:
-            Head_name_rnd = random.randint(1,2)
+            Head_name_rnd = random.randint(1,4)
             Head_name = self.__readtxt(f"Items\Head\\x0{Head_name_rnd}.txt")
             Head_type = self.__readtxt(f"Items\Head\\x0{Head_name_rnd + 200}.txt")
             Head_story = self.__readtxt(f"Items\Head\\x0{Head_name_rnd + 100}.txt")

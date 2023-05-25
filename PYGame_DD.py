@@ -1,7 +1,7 @@
 # -*- coding: cp1251 -*-
 from Dangeon_Room import *
 from StoryMode import *
-from ObserverMode import *
+from ObserverHub import *
 from UnlimitHub import *
 from GuardianMode import *
 from PYGame_SaveLoad import *
@@ -25,7 +25,7 @@ print("Приветствую в игре Dangeon and Dangeon")
 print("=====================================================\n")
 
 print("=====================================================")
-print("В качестве ввода используйте целочисленные значения.\nИные варианты могут вызвать ошибку.\nПример:")
+print("В качестве ввода используйте целочисленные или командные значения.\nИные варианты могут вызвать ошибку.\nПример:")
 print("1. Атака\n2. Защита\n")
 print("1")
 print("=====================================================\n")
@@ -47,7 +47,7 @@ while ExitMainMenu == 0:
     if Player_answer == "1":
 
         print("=====================================================")
-        print("     1. Покоритель ( в разработке )")
+        print("     1. Покоритель")
         print("     2. Покорённый")
         print("     3. Наблюдатель")
         print("     4. Хранитель ( в разработке )")
@@ -78,7 +78,9 @@ while ExitMainMenu == 0:
             Dangeon_difficult = 5
             Everlast_Hub(Dangeon_difficult, Player)
         elif Player_answer == "3":
-            ObserverMode()
+            Player = Dangeon_Action_Player_Conqueror("Пустой", "Ещё один житель Подземелья", [], [(1,  "onehand", "hand", "Потрёпаный меч", "Весьма старый и сильно притупившийся меч из железа", 5), (2,  "tissue", "boots", "Ботики", "Ботнки из обрывков какой-то ткани", 8),  (3,  "tissue", "leggs", "Старые штаны", "Старые штаны, покрытые пылью и липкой субстанцией", 4), (4, "tissue", "chest", "Порваная рубаха", "Старая, изодранная рубаха. Возможно её можно носить", 5), (5, "tissue", "arms", "Кожаные наплечники", "Наплечники из старой кожи. Если особо не двигать плечами, кажутся удобными", 8), (6, "tissue", "head", "Влажная тканевая повязка", "Мокрая тканевая повязка", 1)], 100)
+            Dangeon_difficult = 5
+            Observer_Hub(Dangeon_difficult, Player)
         elif Player_answer == "4":
             GuardianMode()
         elif Player_answer == "5":
@@ -94,6 +96,11 @@ while ExitMainMenu == 0:
         print("3. Покорённый. Слот №2")
         print("4. Покорённый. Слот №3")
         print("5. Покорённый. Слот №4")
+        print("")
+        print("6. Наблюдатель. Слот №1")
+        print("7. Наблюдатель. Слот №2")
+        print("8. Наблюдатель. Слот №3")
+        print("9. Наблюдатель. Слот №4")
         print("=====================================================\n")
 
         Player_answer = input()
@@ -113,6 +120,18 @@ while ExitMainMenu == 0:
         elif Player_answer == "5":
             EverlastMode_List = UnlimitMode_Load(4)
             Everlast_Hub(EverlastMode_List[0], Dangeon_Action_Player_Conqueror(EverlastMode_List[1][0], EverlastMode_List[1][1], EverlastMode_List[1][2], EverlastMode_List[1][3], EverlastMode_List[1][4]))
+        elif Player_answer == "6":
+            ObserverMode_List = ObserverMode_Load(1)
+            Observer_Hub(ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
+        elif Player_answer == "7":
+            ObserverMode_List = ObserverMode_Load(2)
+            Observer_Hub(ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
+        elif Player_answer == "8":
+            ObserverMode_List = ObserverMode_Load(3)
+            Observer_Hub(ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
+        elif Player_answer == "9":
+            ObserverMode_List = ObserverMode_Load(4)
+            Observer_Hub(ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
 
     elif Player_answer == "3":
         print(readtxt("MainMenu\\Directory.txt"))
