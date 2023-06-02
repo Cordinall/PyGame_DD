@@ -1,13 +1,15 @@
 # -*- coding: cp1251 -*-
+import copy
 from Dangeon_Room import *
+from PYGame_SaveLoad import *
 from Guardian_EnemySet import *
 from Guardian_RoomsSet import *
 import random
 
-def GuardianMode(Player, Enemys):
+def GuardianMode(Enemys, Player):
 
     Player = Player
-    Enemeys_stack = Enemys
+    Enemys_stack = Enemys
     Turns_num = 0
 
     print("Режим игры - Хранитель.")
@@ -32,7 +34,7 @@ def GuardianMode(Player, Enemys):
         Phase1 = 0
         while Phase1 == 0:
         
-            print(f"Осколков душ: {Player.MoneyReturn()}")
+            print(f"\n\nОсколков душ: {Player.MoneyReturn()}")
             print("1. Текущие комнаты 2. Создать новую комнату 3. Начать следующую фазу\n")
 
             Player_answer = input()
@@ -56,11 +58,11 @@ def GuardianMode(Player, Enemys):
 
                 if Player_answer == "1":
 
-                    print("Впишите номер комнаты, которую хотите удалить\n")
+                    print("Впишите номер комнаты ( с верхней комнаты ), которую хотите удалить\n")
 
                     Player_answer = int(input())
                     Player.RoomDelete(Player_answer)
-                    print(f"Комната №{Player_answer}")
+                    print(f"Комната №{Player_answer} удалена")
 
             elif Player_answer == "1" and Turns_num % 2 == 0:
 
@@ -91,9 +93,17 @@ def GuardianMode(Player, Enemys):
 
                 elif Player_answer == "2":
 
-                    print("Впишите номер комнаты, которую хотите продать\n")
+                    print("Впишите номер комнаты ( с верхней комнаты ), которую хотите продать\n")
 
-                    Player_answer = int(input())
+                    Player_answer = input()
+
+                    try:
+                        int(Player_answer)
+                    except ValueError:
+                        Player_answer = "43980465"
+                    
+                    Player_answer = int(Player_answer)
+
                     print(len(Player.RoomsReturn()))
                     if Player_answer <= len(Player.RoomsReturn()):
                         Player.RoomSell(Player_answer)
@@ -118,10 +128,18 @@ def GuardianMode(Player, Enemys):
 
                 if Player_answer == "1":
 
-                    print("Впишите номер комнаты, которую хотите купить\n")
+                    print("Впишите номер комнаты ( с верхней комнаты ), которую хотите купить\n")
 
-                    Player_answer = int(input())
-                    if Player_answer <= len(Rooms_list):
+                    Player_answer = input()
+
+                    try:
+                        int(Player_answer)
+                    except ValueError:
+                        Player_answer = "43980465"
+
+                    Player_answer = int(Player_answer)
+
+                    if Player_answer <= len(Rooms_list) and Player_answer > 0:
                         if Player.MoneyCheck(Rooms_list[Player_answer-1][3]):
                             Player.RoomAdd(Rooms_list[Player_answer-1][0], Rooms_list[Player_answer-1][1], Rooms_list[Player_answer-1][2], Rooms_list[Player_answer-1][3]-10, Rooms_list[Player_answer-1][3])
                             del Rooms_list[Player_answer-1]
@@ -132,6 +150,9 @@ def GuardianMode(Player, Enemys):
                 Turns_num += 1
                 Phase1 = 1
 
+            elif Player_answer == "Exit":
+                return
+
         print("=====================================================")
         print("Фаза 2 - Враги.")
         print("=====================================================\n")
@@ -139,3 +160,126 @@ def GuardianMode(Player, Enemys):
         Phase2 = 0
         while Phase2 == 0:
 
+            print("\n=====================================================")
+            print("Текущий вражеский состав:")
+            
+
+            for i in Enemys_stack:
+
+                print("-------------------------------------------------------")
+                print(f"Имя врага - {i[0]}")
+                print(f"Очки здоровья - {i[1]}")
+                print(f"Урон - {i[2]}")
+                
+            print("=====================================================\n")
+
+            New_unit = Enemy_randomunit()
+
+            if New_unit[0] == "Минион":
+                Enemys_stack.append(New_unit)
+                Enemys_stack.append(New_unit)
+            else:
+                Enemys_stack.append(New_unit)
+            
+            print(f"Новый враг - {New_unit[0]}")
+            print("")
+            print("Нажмите Enter что бы продолжить")
+
+            Player_answer = input()
+
+            if Player_answer == "Exit":
+                return
+
+            Phase2 = 1
+
+        print("=====================================================")
+        print("Фаза 3 - Вычет")
+        print("=====================================================\n")
+
+        Phase3 = 0
+        while Phase3 == 0:
+
+            Rooms_list_battle = copy.deepcopy(Player.RoomsReturn())
+            Enemys_stack_battle = copy.deepcopy(Enemys_stack)
+
+            Player_answer = input()
+
+            DeductionEnd = 0
+            while DeductionEnd == 0:
+
+                print("-------------------------------------------------------")
+                print(f"Комната - {Rooms_list_battle[0][0]}\n")
+                print(f"Враги: {Enemys_stack_battle[0][0]}")
+                if len(Enemys_stack_battle) > 1:
+                    print(f"       {Enemys_stack_battle[1][0]}")
+                if len(Enemys_stack_battle) > 2:
+                    print(f"       {Enemys_stack_battle[2][0]}")
+                print("-------------------------------------------------------\n")
+
+                Enemys_Survived = 0
+
+                for i in range(Rooms_list_battle[0][2]):
+
+                    if Enemys_Survived >= len(Enemys_stack_battle):
+                        continue
+
+                    Enemys_stack_battle[Enemys_Survived][1] -= Rooms_list_battle[0][1]
+                    if Enemys_stack_battle[Enemys_Survived][1] <= 0:
+                        print(f"Враг {Enemys_stack_battle[0][0]} мёртв")
+                        del Enemys_stack_battle[0]
+                    else:
+                        Enemys_Survived += 1
+                        print(f"Враг {Enemys_stack_battle[0][0]} выжил")
+
+                del Rooms_list_battle[0]
+
+                if Enemys_stack_battle == []:
+
+                    print("\nВы отбили волну без потерь!")
+
+                    Phase3 = 1
+                    DeductionEnd = 1
+
+                elif Rooms_list_battle == []:
+
+                    print("\nВы пропустили врагов к Ядру")
+
+                    Damage = 0
+                    for enemy in Enemys_stack_battle:
+                        Damage += enemy[2]
+
+                    Player.HpReduction(Damage)
+                    print(f"Ядру нанесено {Damage} урона!")
+
+                    Phase3 = 1
+                    DeductionEnd = 1
+
+                print("\nНажмите Enter что бы продолжить")
+
+                Player_answer = input()
+
+                if Player_answer == "Main":
+                    return
+
+            print("\nЗа прохождение волны вам начислено 60 осколков душ")
+            Player.MoneyAdd(60)
+
+            if Turns_num % 3 == 0:
+                print("\nВы можете сохранить прогресс. Пропишите команду Save, что бы сохранить прогресс или нажмите Enter, что бы избежать сохранения.\n")
+
+                Player_answer = input()
+
+                if Player_answer == "Save":
+
+                    print("Введите номер слота ( от 1 до 4 )")
+
+                    Player_answer = input()
+
+                    if Player_answer == "1":
+                        GuardianMode_Save(1, Enemys_stack, [Player.RoomsReturn(), Player.MoneyReturn(), Player.HpReturn()])
+                    elif Player_answer == "2":
+                        GuardianMode_Save(2, Enemys_stack, [Player.RoomsReturn(), Player.MoneyReturn(), Player.HpReturn()])
+                    elif Player_answer == "3":
+                        GuardianMode_Save(3, Enemys_stack, [Player.RoomsReturn(), Player.MoneyReturn(), Player.HpReturn()])
+                    elif Player_answer == "4":
+                        GuardianMode_Save(4, Enemys_stack, [Player.RoomsReturn(), Player.MoneyReturn(), Player.HpReturn()])

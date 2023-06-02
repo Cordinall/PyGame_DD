@@ -2,9 +2,10 @@
 import random
 from Dangeon_Guardian import *
 
-def Enemy_randomadd():
+def Enemy_randomunit():
 
-    enemy_name = random.choice("Мечник", "Танк", "Сильвер", "Минион")
+    enemy_name_stack = ["Мечник", "Танк", "Сильвер", "Минион"]
+    enemy_name = random.choice(enemy_name_stack)
     
     if enemy_name == "Мечник":
         enemy_hp = 5

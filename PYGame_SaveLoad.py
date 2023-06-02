@@ -84,4 +84,24 @@ def ObserverMode_Load(SlotNum):
 
         return [Dangeon_difficult, Player_Ex]
 
+def GuardianMode_Save(SlotNum, Enemys_Ex, Player_Ex):
 
+    UnlimitMode_DataToSave = {
+        "Player": Player_Ex,
+        "Enemys": Enemys_Ex
+        }
+
+    with open(f'SaveLoad\\GuardianMode\\GuardianMode_SavedData_{SlotNum}.json', 'w') as SavingFile:
+        SavingFile.write(json.dumps(UnlimitMode_DataToSave))
+
+def GuardianMode_Load(SlotNum):
+
+    with open(f'SaveLoad\\GuardianMode\\GuardianMode_SavedData_{SlotNum}.json') as LoadedFile:
+        StoryMode_DataToLaod_JSON = LoadedFile.read()
+        StoryMode_DataToLaod = json.loads(StoryMode_DataToLaod_JSON)
+
+        Enemys = StoryMode_DataToLaod["Enemys"]
+        Player_Ex = StoryMode_DataToLaod["Player"]
+        
+
+        return [Enemys, Player_Ex]

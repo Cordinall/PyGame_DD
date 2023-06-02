@@ -32,7 +32,7 @@
     <Compile Include="StoryMode_Part1.py" />
     <Compile Include="PYGame_SaveLoad.py" />
     <Compile Include="StoryMode_Part2.py" />
-    <Compile Include="TextApp.py" />
+    <Compile Include="PYGame_Defaulter.py" />
     <Compile Include="ObserverHub.py" />
     <Compile Include="UnlimitHub.py" />
     <Compile Include="ObserverMode.py" />

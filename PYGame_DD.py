@@ -6,6 +6,7 @@ from ObserverHub import *
 from UnlimitHub import *
 from GuardianMode import *
 from PYGame_SaveLoad import *
+from PYGame_Defaulter import *
 
 def readtxt(adr):
       ans = ""
@@ -37,7 +38,7 @@ while ExitMainMenu == 0:
     print("=====================================================")
     print("Main Menu\n")
     print("     1. Начать новую игру")
-    print("     2. Продолжить игру ( в разработке )")
+    print("     2. Продолжить игру")
     print("     3. Справочник ( рекомендовано к просмотру )")
     print("     4. Авторы")
     print("     5. Выход")
@@ -51,7 +52,7 @@ while ExitMainMenu == 0:
         print("     1. Покоритель")
         print("     2. Покорённый")
         print("     3. Наблюдатель")
-        print("     4. Хранитель ( в разработке )")
+        print("     4. Хранитель")
         print("")
         print("     5. Назад")
         print("=====================================================\n")
@@ -84,8 +85,8 @@ while ExitMainMenu == 0:
             Observer_Hub(Dangeon_difficult, Player)
         elif Player_answer == "4":
             Player = Dangeon_Action_Player_Guardian([["Single", 10, 1, 90]], 100, 100)
-            Enemys = []
-            GuardianMode(Player, Enemys)
+            Enemys = [["Минион", 3, 2],["Минион", 3, 2]]
+            GuardianMode(Enemys, Player)
         elif Player_answer == "5":
             continue
         
@@ -104,6 +105,13 @@ while ExitMainMenu == 0:
         print("7. Наблюдатель. Слот №2")
         print("8. Наблюдатель. Слот №3")
         print("9. Наблюдатель. Слот №4")
+        print("")
+        print("10. Хранитель. Слот №1")
+        print("11. Хранитель. Слот №2")
+        print("12. Хранитель. Слот №3")
+        print("13. Хранитель. Слот №4")
+        print("")
+        print("14. Сбросить прогресс всех сохранений")
         print("=====================================================\n")
 
         Player_answer = input()
@@ -135,6 +143,30 @@ while ExitMainMenu == 0:
         elif Player_answer == "9":
             ObserverMode_List = ObserverMode_Load(4)
             Observer_Hub(ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
+        elif Player_answer == "10":
+            Guardian_list = GuardianMode_Load(1)
+            GuardianMode(Guardian_list[0], Dangeon_Action_Player_Guardian(Guardian_list[1][0], Guardian_list[1][1], Guardian_list[1][2]))
+        elif Player_answer == "11":
+            Guardian_list = GuardianMode_Load(2)
+            GuardianMode(Guardian_list[0], Dangeon_Action_Player_Guardian(Guardian_list[1][0], Guardian_list[1][1], Guardian_list[1][2]))
+        elif Player_answer == "12":
+            Guardian_list = GuardianMode_Load(3)
+            GuardianMode(Guardian_list[0], Dangeon_Action_Player_Guardian(Guardian_list[1][0], Guardian_list[1][1], Guardian_list[1][2]))
+        elif Player_answer == "13":
+            Guardian_list = GuardianMode_Load(4)
+            GuardianMode(Guardian_list[0], Dangeon_Action_Player_Guardian(Guardian_list[1][0], Guardian_list[1][1], Guardian_list[1][2]))
+        elif Player_answer == "14":
+
+            print("=====================================================")
+            print("Вы уверены?")
+            print("")
+            print("1. Да 2. Нет")
+            print("=====================================================\n")
+
+            Player_answer = input()
+
+            if Player_answer == "1":
+                PYGame_Defaulter()
 
     elif Player_answer == "3":
         print(readtxt("MainMenu\\Directory.txt"))

@@ -15,17 +15,17 @@ def Rooms_RandomSet():
     match room_rnd_1:
         case 1: room_1 = ["Single", 10, 1, 50]
         case 2: room_1 = ["Double", 5, 2, 70]
-        case 3: room_1 = ["Double", 5, 2, 70]
+        case 3: room_1 = ["Triple", 3, 3, 80]
 
     match room_rnd_2:
         case 1: room_2 = ["Single", 10, 1, 50]
         case 2: room_2 = ["Double", 5, 2, 70]
-        case 3: room_2 = ["Double", 5, 2, 70]
+        case 3: room_2 = ["Triple", 3, 3, 80]
 
     match room_rnd_3:
         case 1: room_3 = ["Single", 10, 1, 50]
         case 2: room_3 = ["Double", 5, 2, 70]
-        case 3: room_3 = ["Double", 5, 2, 70]
+        case 3: room_3 = ["Triple", 3, 3, 80]
 
 
     return [room_1, room_2, room_3]
