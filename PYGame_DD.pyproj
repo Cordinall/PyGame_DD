@@ -21,8 +21,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Dangeon_Guardian.py" />
     <Compile Include="Dangeon_Room.py" />
     <Compile Include="GuardianMode.py" />
+    <Compile Include="Guardian_EnemySet.py" />
+    <Compile Include="Guardian_RoomsSet.py" />
     <Compile Include="PYGame_DD.py" />
     <Compile Include="Dangeon_Items.py" />
     <Compile Include="StoryMode.py" />

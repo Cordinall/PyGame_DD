@@ -9,9 +9,6 @@ class Dangeon_Room_NonAction:
         self.__room_size = room_size
         self.__room_biome = room_biome
 
-    # Room_size = 1 or 2 or 3. 1 - little room, 2 - medium, 3 - high.
-    # Room_biome = 1 or 2 or 3 or 4 - 1 - stone room, 2 - green stone room, 3 - bloody stone room, 4 - bloody green stone room
-
     def __readtxt(self, adr):
       ans = ""
       for i in open(adr, encoding="utf-8"):
@@ -51,8 +48,8 @@ class Dangeon_Room_Action_Chest:
 
     def VisualGeneraton(self):
 
-        print(self.__readtxt(f"Dungeon_Active\Gen\Chest\Size\Size_{self.__chest_size}.txt"))
         print(self.__readtxt(f"Dungeon_Active\Gen\Chest\Type\Type_{self.__chest_type}.txt"))
+        print(self.__readtxt(f"Dungeon_Active\Gen\Chest\Size\Size_{self.__chest_size}.txt"))
 
     def ItemGeneration(self):
 

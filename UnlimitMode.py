@@ -96,11 +96,11 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
         if rnd <= 7 and rnd > 3:
             return 5
         elif rnd <= 3:
-            return 10
+            return 8
         elif rnd >=9 and rnd <10:
-            return 20
+            return 15
         elif rnd == 10:
-            return 25
+            return 20
         else:
             return rnd
 
@@ -179,6 +179,13 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                                 Enemy = Dangeon_Room_Action_Enemy(Random_Enemy_Name(), Random_Enemy_Dmg(Dangeon_level, Player), Random_Enemy_Hp(Dangeon_level, Player))
                                 Player.HpAdd(20)
                                 ExitBattle = 1
+
+                        if Player.HpVis() <= 0:
+                            print("Последний полученный вами удар оказался критичным. Ноги подкашиваются и вы падаете на холодный пол. Несмотря на плачевную ситуацию, вы не чувствете волнения, ибо собственные чувства уже давно покинули вас.")
+                            print("Сквозь туман вы видите существо, что нанесло вам столь тяжкие раны. Впервые за долгое время вы чувствуете усталость. Вы закрываете глаза. Навсегда.")
+                            print("")
+                            Exit_list = [Dangeon_difficult, Player, 1]
+                            return Exit_list
 
                         print("")
 
@@ -308,7 +315,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                     Dangeon_difficult += 1
 
                 ExitRoom = 1
-                Exit_list = [Dangeon_difficult, Player]
+                Exit_list = [Dangeon_difficult, Player, 0]
                 return Exit_list
 
             elif Player_answer == "Ex" and Enemy_num > 0:
