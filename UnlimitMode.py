@@ -224,7 +224,9 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
             elif Player_answer == "3" and Sleep_num < 3:
 
-                Player.HpAdd(Player_HpRandomHeal())
+                HpRegen = Player_HpRandomHeal()
+                Player.HpAdd(HpRegen)
+                print(f"Вы неплохо отдохнули, восстановив {HpRegen} очков здоровья")
                 Sleep_num += 1
 
             elif Player_answer == "3" and Sleep_num >= 3:
@@ -254,9 +256,16 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                 if Player_answer == "1":
 
                     print("")
-                    print("Введите ID предмета ( Первая цияра в описании )")
+                    print("Введите ID предмета ( Первая цифра в описании )")
 
-                    Player_answer = int(input())
+                    Player_answer = input()
+
+                    try:
+                        int(Player_answer)
+                    except ValueError:
+                        Player_answer = "43980465"
+                    
+                    Player_answer = int(Player_answer)
 
                     for i in Inv_list:
 
@@ -278,9 +287,16 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                 elif Player_answer == "2":
                     
                     print("")
-                    print("Введите ID предмета ( Первая цияра в описании )")
+                    print("Введите ID предмета ( Первая цифра в описании )")
 
-                    Player_answer = int(input())
+                    Player_answer = input()
+
+                    try:
+                        int(Player_answer)
+                    except ValueError:
+                        Player_answer = "43980465"
+                    
+                    Player_answer = int(Player_answer)
 
                     Player.InventoryDel(Player_answer)
 

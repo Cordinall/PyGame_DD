@@ -65,7 +65,7 @@ class Dangeon_Room_Action_Chest:
             return Item.MeleeGeneration(Melee_name, Melee_type, Melee_story, Melee_dmg)
 
         elif self.__chest_treasure_type == 1:
-            Boots_name_rnd = random.randint(1,2)
+            Boots_name_rnd = random.randint(1,3)
             Boots_name = self.__readtxt(f"Items\Boots\\x0{Boots_name_rnd}.txt")
             Boots_type = self.__readtxt(f"Items\Boots\\x0{Boots_name_rnd + 200}.txt")
             Boots_story = self.__readtxt(f"Items\Boots\\x0{Boots_name_rnd + 100}.txt")
@@ -74,7 +74,7 @@ class Dangeon_Room_Action_Chest:
             return Item.BootsGeneration(Boots_name, Boots_type, Boots_story, Boots_def)
 
         elif self.__chest_treasure_type == 2:
-            Leggs_name_rnd = random.randint(1,2)
+            Leggs_name_rnd = random.randint(1,3)
             Leggs_name = self.__readtxt(f"Items\Leggs\\x0{Leggs_name_rnd}.txt")
             Leggs_type = self.__readtxt(f"Items\Leggs\\x0{Leggs_name_rnd + 200}.txt")
             Leggs_story = self.__readtxt(f"Items\Leggs\\x0{Leggs_name_rnd + 100}.txt")
@@ -83,7 +83,7 @@ class Dangeon_Room_Action_Chest:
             return Item.LeggsGeneration(Leggs_name, Leggs_type, Leggs_story, Leggs_def)
 
         elif self.__chest_treasure_type == 3:
-            Chest_name_rnd = random.randint(1,2)
+            Chest_name_rnd = random.randint(1,3)
             Chest_name = self.__readtxt(f"Items\Chest\\x0{Chest_name_rnd}.txt")
             Chest_type = self.__readtxt(f"Items\Chest\\x0{Chest_name_rnd + 200}.txt")
             Chest_story = self.__readtxt(f"Items\Chest\\x0{Chest_name_rnd + 100}.txt")
@@ -92,7 +92,7 @@ class Dangeon_Room_Action_Chest:
             return Item.ChestGeneration(Chest_name, Chest_type, Chest_story, Chest_def)
 
         elif self.__chest_treasure_type == 4:
-            Arms_name_rnd = random.randint(1,2)
+            Arms_name_rnd = random.randint(1,4)
             Arms_name = self.__readtxt(f"Items\Arms\\x0{Arms_name_rnd}.txt")
             Arms_type = self.__readtxt(f"Items\Arms\\x0{Arms_name_rnd + 200}.txt")
             Arms_story = self.__readtxt(f"Items\Arms\\x0{Arms_name_rnd + 100}.txt")
@@ -101,7 +101,7 @@ class Dangeon_Room_Action_Chest:
             return Item.ArmsGeneration(Arms_name, Arms_type, Arms_story, Arms_def)
 
         elif self.__chest_treasure_type == 5:
-            Head_name_rnd = random.randint(1,4)
+            Head_name_rnd = random.randint(1,3)
             Head_name = self.__readtxt(f"Items\Head\\x0{Head_name_rnd}.txt")
             Head_type = self.__readtxt(f"Items\Head\\x0{Head_name_rnd + 200}.txt")
             Head_story = self.__readtxt(f"Items\Head\\x0{Head_name_rnd + 100}.txt")
