@@ -3,7 +3,7 @@ from Dangeon_Room import *
 from PYGame_SaveLoad import *
 import random
 
-def ObserverMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
+def ObserverMode(Room_Num_En, Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
     def Random_Room_Size():
 
@@ -91,6 +91,7 @@ def ObserverMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
     Player = Player_En
     Dangeon_difficult = Dangeon_difficult_En
+    Room_Num = Room_Num_En
     Dangeon_level = 1
 
     Never = 0
@@ -235,6 +236,10 @@ def ObserverMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
                 print(f"Текущий уровень здоровья: {Player.HpVis()}")
 
+            elif Player_answer == "Rooms":
+
+                print(f"\n\nКоличество пройденных комнат: {Room_Num}\n\n")
+
             elif Player_answer == "Ex":
 
                 print("")
@@ -246,7 +251,8 @@ def ObserverMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                     Dangeon_difficult += 1
 
                 ExitRoom = 1
-                Exit_list = [Dangeon_difficult, Player, 0]
+                Room_Num += 1
+                Exit_list = [Room_Num, Dangeon_difficult, Player, 0]
                 return Exit_list
 
             elif Player_answer == "Save":
@@ -258,14 +264,14 @@ def ObserverMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                 Player_answer = input()
 
                 if Player_answer == "1":
-                    ObserverMode_Save(1, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                    ObserverMode_Save(1, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()], Room_Num)
                 elif Player_answer == "2":
-                    ObserverMode_Save(2, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                    ObserverMode_Save(2, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()], Room_Num)
                 elif Player_answer == "3":
-                    ObserverMode_Save(3, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                    ObserverMode_Save(3, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()], Room_Num)
                 elif Player_answer == "4":
-                    ObserverMode_Save(4, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                    ObserverMode_Save(4, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()], Room_Num)
 
             elif Player_answer == "Main":
-                Exit_list = [Dangeon_difficult, Player, 1]
+                Exit_list = [Room_Num, Dangeon_difficult, Player, 1]
                 return Exit_list

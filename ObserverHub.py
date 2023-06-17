@@ -3,7 +3,7 @@ from Dangeon_Room import *
 from ObserverMode import *
 import random
 
-def Observer_Hub(Dangeon_difficult, Player):
+def Observer_Hub(Room_Num, Dangeon_difficult, Player):
     
     print("=====================================================")
     print("Режим игры - Наблюдатель.")
@@ -17,6 +17,7 @@ def Observer_Hub(Dangeon_difficult, Player):
 
     Player = Player
     Dangeon_difficult = Dangeon_difficult
+    Room_Num = Room_Num
 
     Never = 0
     while Never == 0:
@@ -26,16 +27,17 @@ def Observer_Hub(Dangeon_difficult, Player):
         if Random_level == 1:
             Enemy_Num = 1
             Chest_Num = 1
-            Exit_list = ObserverMode(Dangeon_difficult, Player, Enemy_Num, Chest_Num)
+            Exit_list = ObserverMode(Room_Num, Dangeon_difficult, Player, Enemy_Num, Chest_Num)
         elif Random_level == 2:
             Enemy_Num = 2
             Chest_Num = 1
-            Exit_list = ObserverMode(Dangeon_difficult, Player, Enemy_Num, Chest_Num)
+            Exit_list = ObserverMode(Room_Num, Dangeon_difficult, Player, Enemy_Num, Chest_Num)
         elif Random_level == 3:
             Enemy_Num = 3
             Chest_Num = 2
-            Exit_list = ObserverMode(Dangeon_difficult, Player, Enemy_Num, Chest_Num)
+            Exit_list = ObserverMode(Room_Num, Dangeon_difficult, Player, Enemy_Num, Chest_Num)
 
-        Dangeon_difficult = Exit_list[0]
-        Player = Exit_list[1]
-        Never = Exit_list[2]
+        Room_Num = Exit_list[0]
+        Dangeon_difficult = Exit_list[1]
+        Player = Exit_list[2]
+        Never = Exit_list[3]

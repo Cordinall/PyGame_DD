@@ -3,7 +3,7 @@ from Dangeon_Room import *
 from PYGame_SaveLoad import *
 import random
 
-def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
+def EverlastMode(Room_Num_En, Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
     def Random_Room_Size():
 
@@ -108,6 +108,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
     Player = Player_En
     Dangeon_difficult = Dangeon_difficult_En
+    Room_Num = Room_Num_En
     Dangeon_level = 1
 
     Never = 0
@@ -172,19 +173,19 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
 
                             if Enemy_num == 0:
                                 print("Все враги в пределах досигаемости повержены. Введите 'Ex' для перехода в следующую комнату. Введите 'Save' чтобы сохранить игру.")
-                                Player.HpAdd(20)
+                                Player.HpAdd(10)
                                 ExitBattle = 1
 
                             elif Enemy_num > 0:
                                 Enemy = Dangeon_Room_Action_Enemy(Random_Enemy_Name(), Random_Enemy_Dmg(Dangeon_level, Player), Random_Enemy_Hp(Dangeon_level, Player))
-                                Player.HpAdd(20)
+                                Player.HpAdd(10)
                                 ExitBattle = 1
 
                         if Player.HpVis() <= 0:
                             print("Последний полученный вами удар оказался критичным. Ноги подкашиваются и вы падаете на холодный пол. Несмотря на плачевную ситуацию, вы не чувствете волнения, ибо собственные чувства уже давно покинули вас.")
                             print("Сквозь туман вы видите существо, что нанесло вам столь тяжкие раны. Впервые за долгое время вы чувствуете усталость. Вы закрываете глаза. Навсегда.")
                             print("")
-                            Exit_list = [Dangeon_difficult, Player, 1]
+                            Exit_list = [Room_Num, Dangeon_difficult, Player, 1]
                             return Exit_list
 
                         print("")
@@ -319,6 +320,10 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
             elif Player_answer == "H" or Player_answer == "h":
 
                 print(f"Текущий уровень здоровья: {Player.HpVis()}")
+                
+            elif Player_answer == "Rooms":
+
+                print(f"\n\nКоличество пройденных комнат: {Room_Num}\n\n")
 
             elif Player_answer == "Ex" and Enemy_num <= 0:
 
@@ -330,8 +335,9 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                 else:
                     Dangeon_difficult += 1
 
+                Room_Num += 1
                 ExitRoom = 1
-                Exit_list = [Dangeon_difficult, Player, 0]
+                Exit_list = [Room_Num, Dangeon_difficult, Player, 0]
                 return Exit_list
 
             elif Player_answer == "Ex" and Enemy_num > 0:
@@ -348,13 +354,13 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                 Player_answer = input()
 
                 if Player_answer == "1":
-                    UnlimitMode_Save(1, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                    UnlimitMode_Save(1, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()], Room_Num)
                 elif Player_answer == "2":
-                    UnlimitMode_Save(2, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                    UnlimitMode_Save(2, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()], Room_Num)
                 elif Player_answer == "3":
-                    UnlimitMode_Save(3, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                    UnlimitMode_Save(3, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()], Room_Num)
                 elif Player_answer == "4":
-                    UnlimitMode_Save(4, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()])
+                    UnlimitMode_Save(4, Dangeon_difficult, [Player.NameOutPut(), Player.StoryOutPut(), Player.InventoryOutput(), Player.BodyOutput(), Player.HpVis()], Room_Num)
 
             elif Player_answer == "Save" and Enemy_num > 0:
 
@@ -362,5 +368,7 @@ def EverlastMode(Dangeon_difficult_En, Player_En, Enemy_Num_En, Chest_Num_En):
                 print("Вы не можете сделать это сейчас.")
 
             elif Player_answer == "Main":
-                Exit_list = [Dangeon_difficult, Player, 1]
+                Exit_list = [Room_Num, Dangeon_difficult, Player, 1]
                 return Exit_list
+
+            

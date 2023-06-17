@@ -30,11 +30,12 @@ def StoryMode_Load():
 
         return [Game_CurrentStoryPart, Player_Ex]
 
-def UnlimitMode_Save(SlotNum, Dangeon_difficult, Player_Ex):
+def UnlimitMode_Save(SlotNum, Dangeon_difficult, Player_Ex, Room_Num):
 
     UnlimitMode_DataToSave = {
         "Player": Player_Ex,
-        "Dangeon_difficult": Dangeon_difficult
+        "Dangeon_difficult": Dangeon_difficult,
+        "Room_Num": Room_Num
         }
 
     with open(f'SaveLoad\\UnlimitMode\\UnlimitMode_SavedData_{SlotNum}.json', 'w') as SavingFile:
@@ -54,14 +55,16 @@ def UnlimitMode_Load(SlotNum):
         Player_Ex[3][4] = tuple(Player_Ex[3][4])
         Player_Ex[3][5] = tuple(Player_Ex[3][5])
         Dangeon_difficult = StoryMode_DataToLaod["Dangeon_difficult"]
+        Room_Num = StoryMode_DataToLaod["Room_Num"]
 
-        return [Dangeon_difficult, Player_Ex]
+        return [Dangeon_difficult, Player_Ex, Room_Num]
 
-def ObserverMode_Save(SlotNum, Dangeon_difficult, Player_Ex):
+def ObserverMode_Save(SlotNum, Dangeon_difficult, Player_Ex, Room_Num):
 
     UnlimitMode_DataToSave = {
         "Player": Player_Ex,
-        "Dangeon_difficult": Dangeon_difficult
+        "Dangeon_difficult": Dangeon_difficult,
+        "Room_Num": Room_Num
         }
 
     with open(f'SaveLoad\\ObserverMode\\ObserverMode_SavedData_{SlotNum}.json', 'w') as SavingFile:
@@ -81,8 +84,9 @@ def ObserverMode_Load(SlotNum):
         Player_Ex[3][4] = tuple(Player_Ex[3][4])
         Player_Ex[3][5] = tuple(Player_Ex[3][5])
         Dangeon_difficult = StoryMode_DataToLaod["Dangeon_difficult"]
+        Room_Num = StoryMode_DataToLaod["Room_Num"]
 
-        return [Dangeon_difficult, Player_Ex]
+        return [Dangeon_difficult, Player_Ex, Room_Num]
 
 def GuardianMode_Save(SlotNum, Enemys_Ex, Player_Ex):
 

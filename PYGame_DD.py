@@ -87,11 +87,13 @@ while ExitMainMenu == 0:
         elif Player_answer == "2":
             Player = Dangeon_Action_Player_Conqueror("Пустой", "Ещё один житель Подземелья", [], [(1,  "onehand", "hand", "Потрёпаный меч", "Весьма старый и сильно притупившийся меч из железа", 5), (2,  "tissue", "boots", "Ботики", "Ботнки из обрывков какой-то ткани", 4),  (3,  "tissue", "leggs", "Старые штаны", "Старые штаны, покрытые пылью и липкой субстанцией", 4), (4, "tissue", "chest", "Порваная рубаха", "Старая, изодранная рубаха. Возможно её можно носить", 4), (5, "tissue", "arms", "Кожаные наплечники", "Наплечники из старой кожи. Если особо не двигать плечами, кажутся удобными", 4), (6, "tissue", "head", "Влажная тканевая повязка", "Мокрая тканевая повязка", 1)], 100)
             Dangeon_difficult = 5
-            Everlast_Hub(Dangeon_difficult, Player)
+            Room_Num = 1
+            Everlast_Hub(Room_Num, Dangeon_difficult, Player)
         elif Player_answer == "3":
             Player = Dangeon_Action_Player_Conqueror("Пустой", "Ещё один житель Подземелья", [], [(1,  "onehand", "hand", "Потрёпаный меч", "Весьма старый и сильно притупившийся меч из железа", 5), (2,  "tissue", "boots", "Ботики", "Ботнки из обрывков какой-то ткани", 8),  (3,  "tissue", "leggs", "Старые штаны", "Старые штаны, покрытые пылью и липкой субстанцией", 4), (4, "tissue", "chest", "Порваная рубаха", "Старая, изодранная рубаха. Возможно её можно носить", 5), (5, "tissue", "arms", "Кожаные наплечники", "Наплечники из старой кожи. Если особо не двигать плечами, кажутся удобными", 8), (6, "tissue", "head", "Влажная тканевая повязка", "Мокрая тканевая повязка", 1)], 100)
             Dangeon_difficult = 5
-            Observer_Hub(Dangeon_difficult, Player)
+            Room_Num = 1
+            Observer_Hub(Room_Num, Dangeon_difficult, Player)
         elif Player_answer == "4":
             Player = Dangeon_Action_Player_Guardian([["Single", 10, 1, 90]], 100, 100)
             Enemys = [["Минион", 3, 2],["Минион", 3, 2]]
@@ -130,28 +132,28 @@ while ExitMainMenu == 0:
             StoryMode(StoryMode_List[0], Dangeon_Action_Player_Conqueror(StoryMode_List[1][0], StoryMode_List[1][1], StoryMode_List[1][2], StoryMode_List[1][3], StoryMode_List[1][4]))
         elif Player_answer == "2":
             EverlastMode_List = UnlimitMode_Load(1)
-            Everlast_Hub(EverlastMode_List[0], Dangeon_Action_Player_Conqueror(EverlastMode_List[1][0], EverlastMode_List[1][1], EverlastMode_List[1][2], EverlastMode_List[1][3], EverlastMode_List[1][4]))
+            Everlast_Hub(EverlastMode_List[2], EverlastMode_List[0], Dangeon_Action_Player_Conqueror(EverlastMode_List[1][0], EverlastMode_List[1][1], EverlastMode_List[1][2], EverlastMode_List[1][3], EverlastMode_List[1][4]))
         elif Player_answer == "3":
             EverlastMode_List = UnlimitMode_Load(2)
-            Everlast_Hub(EverlastMode_List[0], Dangeon_Action_Player_Conqueror(EverlastMode_List[1][0], EverlastMode_List[1][1], EverlastMode_List[1][2], EverlastMode_List[1][3], EverlastMode_List[1][4]))
+            Everlast_Hub(EverlastMode_List[2], EverlastMode_List[0], Dangeon_Action_Player_Conqueror(EverlastMode_List[1][0], EverlastMode_List[1][1], EverlastMode_List[1][2], EverlastMode_List[1][3], EverlastMode_List[1][4]))
         elif Player_answer == "4":
             EverlastMode_List = UnlimitMode_Load(3)
-            Everlast_Hub(EverlastMode_List[0], Dangeon_Action_Player_Conqueror(EverlastMode_List[1][0], EverlastMode_List[1][1], EverlastMode_List[1][2], EverlastMode_List[1][3], EverlastMode_List[1][4]))
+            Everlast_Hub(EverlastMode_List[2], EverlastMode_List[0], Dangeon_Action_Player_Conqueror(EverlastMode_List[1][0], EverlastMode_List[1][1], EverlastMode_List[1][2], EverlastMode_List[1][3], EverlastMode_List[1][4]))
         elif Player_answer == "5":
             EverlastMode_List = UnlimitMode_Load(4)
-            Everlast_Hub(EverlastMode_List[0], Dangeon_Action_Player_Conqueror(EverlastMode_List[1][0], EverlastMode_List[1][1], EverlastMode_List[1][2], EverlastMode_List[1][3], EverlastMode_List[1][4]))
+            Everlast_Hub(EverlastMode_List[2], EverlastMode_List[0], Dangeon_Action_Player_Conqueror(EverlastMode_List[1][0], EverlastMode_List[1][1], EverlastMode_List[1][2], EverlastMode_List[1][3], EverlastMode_List[1][4]))
         elif Player_answer == "6":
             ObserverMode_List = ObserverMode_Load(1)
-            Observer_Hub(ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
+            Observer_Hub(ObserverMode_List[2], ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
         elif Player_answer == "7":
             ObserverMode_List = ObserverMode_Load(2)
-            Observer_Hub(ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
+            Observer_Hub(ObserverMode_List[2], ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
         elif Player_answer == "8":
             ObserverMode_List = ObserverMode_Load(3)
-            Observer_Hub(ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
+            Observer_Hub(ObserverMode_List[2], ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
         elif Player_answer == "9":
             ObserverMode_List = ObserverMode_Load(4)
-            Observer_Hub(ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
+            Observer_Hub(ObserverMode_List[2], ObserverMode_List[0], Dangeon_Action_Player_Conqueror(ObserverMode_List[1][0], ObserverMode_List[1][1], ObserverMode_List[1][2], ObserverMode_List[1][3], ObserverMode_List[1][4]))
         elif Player_answer == "10":
             Guardian_list = GuardianMode_Load(1)
             GuardianMode(Guardian_list[0], Dangeon_Action_Player_Guardian(Guardian_list[1][0], Guardian_list[1][1], Guardian_list[1][2]))
